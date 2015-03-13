@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+      <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>  
+    <title>slackomatic</title>
+    <link rel="stylesheet" type="text/css" href="/css/slackomatic.css">
+  </head>
+  <body class='slackomatic'>
+    <a target="_blank" href="https://metalab.at/wiki/Slackomatic">
+      <img height="100" src="/img/slackomatic.png" title="Remember kids, alpha is the new beta!"/>
+    </a>  
+    <div class='device'>
+      <p style='font-weight: bold; text-align: left'>▶ Master power</p>
+      <table>
+        <tr>
+          <td width="40%"><input type="button" onclick="lounge('power/on')" value="ON"/>
+          <input type="button" onclick="lounge('power/off')" value="OFF"/></td>
+          <td>This will turn on/off both the projector and the hifi</td>
+        </tr>
+      </table>
+      <p style='font-weight: bold; text-align: left'>▶ Select the system you want to use</p>
+      <table>
+        <tr>
+          <td width="40%">
+            <input class="input_select" type="button" onclick="lounge('devices/screeninvader')" title='ScreenInvader' value="ScreenInvader"/><br>
+            <input class="input_select" type="button" onclick="lounge('devices/chromecast')" title='Chromecast' value="Chromecast"/><br>
+            <input class="input_select" type="button" onclick="lounge('devices/ps2')" title='PS2' value="PS2"/><br>
+            <input class="input_select" type="button" onclick="lounge('devices/ps3')" title='PS3' value="PS3"/><br>
+            <input class="input_select" type="button" onclick="lounge('devices/wii')" title='Wii' value="Wii"/><br>
+            <input class="input_select" type="button" onclick="lounge('devices/own_hdmi')" title='My own HDMI port' value="My own HDMI port"/><br>
+            <input class="input_select" type="button" onclick="lounge('devices/own_audio_klinke')" title='My own Audio Klinke' value="My own Audio Klinke"/><br>
+            <input class="input_select" type="button" onclick="lounge('devices/bt')" title='Philips BT Headset' value="Philips BT Headset"/><br>
+          </td>
+          <td>The audio and video of the selected device will be shown on the projector and played on the hifi. To display stuff from your own HDMI capable device just connect the black spare HDMI cable and select "My own HDMI port".</td>
+        </tr>
+      </table>
+      <p style='font-weight: bold; text-align: left'>▶ Volume</p>
+      <table>
+        <tr>
+          <td width="33%">
+            <input class="input_select" type="button" onclick="lounge('volume/low')" title='Low' value="Low"/><br>
+          </td>
+          <td width="33%">
+            <input class="input_select" type="button" onclick="lounge('volume/medium')" title='Medium' value="Medium"/><br>
+          </td>
+          <td width="33%">
+            <input class="input_select" type="button" onclick="lounge('volume/high')" title='High' value="High"/><br>
+          </td>
+        </tr>
+      </table>
+      <p style='font-weight: bold; text-align: left'>▶ Lighting</p>
+      <table>
+        <tr>
+          <td>
+            <input class="input_select" type="button" onclick="lounge('lighting/off')" title='Off' value="Off"/><br>
+          </td>
+          <td>
+            <input class="input_select" type="button" onclick="lounge('lighting/super_chillig')" title='Super chillig' value="Super chillig"/><br>
+          </td>
+          <td>
+            <input class="input_select" type="button" onclick="lounge('lighting/chillig')" title='Chillig' value="Chillig"/><br>
+          </td>
+          <td>
+            <input class="input_select" type="button" onclick="lounge('lighting/normal')" title='Normal' value="Normal"/><br>
+          </td>
+          <td>
+            <input class="input_select" type="button" onclick="lounge('lighting/chinese_sweatshop')" title='Chinese sweatshop' value="Chinese sweatshop"/><br>
+          </td>
+        </tr>
+      </table>
+      <p style='font-weight: bold; text-align: left'>▶ Power saving</p>
+      <table>
+        <tr>
+          <td width="40%">
+            <input class="input_select" type="button" onclick="lounge('powersaving/projector/blank/on')" title='Blank the projector' value="Blank the projector"/><br>
+          </td>
+          <td>If you want to unblank the projector click <a href="#" onclick="lounge('powersaving/projector/blank/off')">here</a></td>
+        </tr>
+        <tr>
+          <td width="40%">
+            <input class="input_select" type="button" onclick="lounge('powersaving/projector/power/off')" title='Turn off the projector' value="Turn off the projector"/><br>
+          </td>
+          <td>If you want to turn on the projector again click <a href="#" onclick="lounge('powersaving/projector/power/on')">here</a></td>
+        </tr>
+        <tr>
+          <td width="40%">
+            <input class="input_select" type="button" onclick="lounge('powersaving/tv/power/off')" title='Turn off the TV' value="Turn off the TV"/><br>
+          </td>
+          <td>If you want to turn on the TV again click <a href="#" onclick="lounge('powersaving/tv/power/on')">here</a></td>
+        </tr>
+        <tr>
+          <td width="40%">
+            <input class="input_select" type="button" onclick="lounge('powersaving/yamaha/power/off')" title='Turn off the Yamaha' value="Turn off the Yamaha"/><br>
+          </td>
+          <td>If you want to turn on the Yamaha again click <a href="#" onclick="lounge('powersaving/yamaha/power/on')">here</a></td>
+        </tr>
+        <tr>
+          <td width="40%">
+            <input class="input_select" type="button" onclick="lounge('powersaving/metacade/power/off')" title='Turn off the Metacade' value="Turn off the Metacade"/><br>
+          </td>
+          <td>If you want to turn on the Metacade again click <a href="#" onclick="lounge('powersaving/metacade/power/on')">here</a></td>
+        </tr>
+        <tr>
+          <td width="40%">
+            <input class="input_select" type="button" onclick="lounge('powersaving/lamp1/power/off')" title='Turn off the square lamp' value="Turn off the square lamp"/><br>
+          </td>
+          <td>If you want to turn on the square lamp again click <a href="#" onclick="lounge('powersaving/lamp1/power/on')">here</a></td>
+        </tr>
+      </table>
+      <p style='font-weight: bold; text-align: left'>▶ Any questions, need help?</p>
+      <table>
+        <tr>
+          <td>If you are not familiar with the setup and something doesn't work as expected please
+          ask a fellow hacker/hackette around first before attempting to "fix it"(tm) yourself.<br>
+          You might also take a look at the <a target="_blank" href="troubleshooting.html">troubleshooting</a> guide.</td>
+        </tr>
+      </table>
+    </div>
+    <a href="advanced.html">advanced mode</a>
+    <a href="#" onclick="lounge('powersaving/killswitch/reset')">I am still awake :3</a>
+    <script type="text/JavaScript" src="/js/slackomatic.js"></script>
+  </body>
+</html>

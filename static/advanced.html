@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+      <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>slackomatic - advanced</title>
+    <link rel="stylesheet" type="text/css" href="/css/slackomatic.css">
+  </head>
+  <body class='slackomatic'>
+    <a href="/">
+      <img height="100" src="/img/slackomatic.png" title="Remember kids, alpha is the new beta!"/> 
+    </a>
+    <div class='device'>
+      <p style='font-weight: bold; text-align: left'>▶ BenQ projector</p>
+      <table>
+        <tr>
+          <td style='font-weight:bold;'>Power</td>
+          <td><input type="button" onclick="benq('power/on')" value="ON"/><input type="button" onclick="benq('power/off')" value="OFF"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">Blank</td>
+          <td><input type="button" onclick="benq('display/blank/on')" value="ON"/><input type="button" onclick="benq('display/blank/off')" value="OFF"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">Brilliant</td>
+          <td><input type="button" onclick="benq('display/brilliant/on')" value="ON"/><input type="button" onclick="benq('display/brilliant/off')" value="OFF"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">Input</td>
+          <td>
+            <table>
+              <tr>
+                <td><input class="input_select" type="button" onclick="benq('display/input/vga1')" value="VGA1"/></td>
+                <td><input class="input_select" type="button" onclick="benq('display/input/vga2')" value="VGA2"/></td>
+                <td><input class="input_select" type="button" onclick="benq('display/input/hdmi')" value="HDMI"/></td>
+                <td><input class="input_select" type="button" onclick="benq('display/input/video')" value="AV"/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div class='device'>
+      <p style='font-weight: bold; text-align: left'>▶ NEC TV</p>
+      <table>
+        <tr>
+          <td style='font-weight:bold;'>Power</td>
+          <td><input type="button" onclick="nec('power/on')" value="ON"/><input type="button" onclick="nec('power/off')" value="OFF"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">Main Input</td>
+          <td>
+            <table>
+              <tr>
+                <td><input class="input_select" type="button" onclick="nec('display/input/hdmi')" value="HDMI"/></td>
+                <td><input class="input_select" type="button" onclick="nec('display/input/dvi')" value="DVI"/></td>
+                <td><input class="input_select" type="button" onclick="nec('display/input/vga')" value="VGA"/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right">PIP</td>
+          <td><input type="button" onclick="nec('pip/on')" value="ON"/><input type="button" onclick="nec('pip/off')" value="OFF"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">PIP Size</td>
+          <td><input type="button" onclick="nec('pip/size/small')" value="Small"/><input type="button" onclick="nec('pip/size/medium')" value="Medium"/><input type="button" onclick="nec('pip/size/large')" value="Large"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">PIP Mode</td>
+          <td>
+            <table>
+              <tr>
+                <td><input type="button" onclick="nec('pip/mode/pip')" value="PIP"/><input type="button" onclick="nec('pip/mode/pop')" value="POP"/></td>
+              </tr>
+              <tr>
+                <td><input type="button" onclick="nec('pip/mode/side_by_side_aspect')" value="SideBySide Aspect"/><input type="button" onclick="nec('pip/mode/side_by_side_full')" value="SideBySide Full"/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: right">PIP Input</td>
+          <td>
+            <table>
+              <tr>
+                <td><input class="input_select" type="button" onclick="nec('pip/input/hdmi')" value="HDMI"/></td>
+                <td><input class="input_select" type="button" onclick="nec('pip/input/dvi')" value="DVI"/></td>
+                <td><input class="input_select" type="button" onclick="nec('pip/input/vga')" value="VGA"/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div class='device'>
+      <p style='font-weight: bold; text-align: left'>▶ Yamaha AV system</p>
+      <table>
+        <tr>
+          <td style='font-weight: bold;'>Power</td>
+          <td><input type="button" onclick="yamaha('power/on')" value="ON"/><input type="button" onclick="yamaha('power/off')" value="OFF"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">Mute</td>
+          <td><input type="button" onclick="yamaha('mute/on')" value="ON"/><input type="button" onclick="yamaha('mute/off')" value="OFF"/></td>
+        </tr>
+      </table>
+      <p style='font-weight: bold; text-align: center'>Input source</p>
+      <table>
+        <tr>
+          <td style="text-align: right">AV</td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/av1')" title='AV1' value="AV1"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/av2')" title='AV2' value="AV2"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/av3')" title='AV3' value="AV3"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/av4')" title='AV4' value="AV4"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/av5')" title='AV5' value="AV5"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/av6')" title='AV6' value="AV6"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">HDMI</td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/hdmi1')" title='HDMI1' value="HDMI1"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/hdmi2')" title='HDMI2' value="HDMI2"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/hdmi3')" title='HDMI3' value="HDMI3"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/hdmi4')" title='HDMI4' value="HDMI4"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/hdmi5')" title='HDMI5' value="HDMI5"/></td>
+        </tr>
+        <tr>
+          <td style="text-align: right">AUDIO</td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/audio1')" title='AUDIO1' value="AUDIO1"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/audio2')" title='AUDIO2' value="AUDIO2"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/audio3')" title='AUDIO3' value="AUDIO3"/></td>
+          <td><input class="input_select" type="button" onclick="yamaha('input/audio4')" title='AUDIO4' value="AUDIO4"/></td>
+        </tr>
+      </table>
+    </div>
+    <a href="index.html">simple mode</a>
+    <a target="_blank" href="build.html">build</a>
+    <a target="_blank" href="/slackomatic/functions/layout">API</a>
+    <!--
+    <input type="button" onclick="slackomatic('shutdown')" value="Shutdown"/>
+    -->
+    <script type="text/JavaScript" src="/js/slackomatic.js"></script>
+  </body>
+</html>
