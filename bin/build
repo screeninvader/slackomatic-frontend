@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/j/dev/slackomatic && \
+babel src/ --out-dir dist/ --source-maps --experimental

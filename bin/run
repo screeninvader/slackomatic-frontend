@@ -1,2 +1,5 @@
 #!/bin/bash
-cd /home/pi/nodejs; npm start
+cd /home/pi/nodejs/;
+./bin/build
+babel src/ --out-dist slack.js --experimental
+node dist/slack.js
