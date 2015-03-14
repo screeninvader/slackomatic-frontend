@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/j/dev/slackomatic && \
+cd /home/pi/nodejs && \
 babel src/ --out-dir dist/ --source-maps --experimental
