@@ -1,35 +1,48 @@
-var rootUrl = '/slackomatic/'
+import {get} from 'http';
 
-function request(url) {
-  var xhr = new XMLHttpRequest()
-  console.log('getting url');
-  xhr.open('GET', url, true);
-  xhr.send(null);
+var rootUrl = '/slackomatic/';
+
+//add eventlisteners to all inputs
+export function initSlack() {
+  var clickInputs = document.body.querySelectorAll('input[data-command]');
+  console.log('clickInputs.length', clickInputs.length);
+
+  for( let i = 0; i < clickInputs.length; i++ ) {
+    clickInputs[ i ].addEventListener( 'click', clickEventListener, false );
+  }
 }
 
-function device(device, command) {
-  var url = rootUrl + 'devices/' + device + '/' + command;
+function clickEventListener(evt) {
+  var target = evt.target
+    , dataCommand = target.getAttribute('data-command')
+    , dataPath = target.getAttribute('data-path')
+    , url = getUrl(dataCommand, dataPath);
+  ;
+  console.log('url', url);
   request(url);
-};
+}
 
-function benq(command) {
-	device('benq', command);
-};
+function getCallback(res) {
+  console.log(`get request callback, status: ${res.statusCode}`);
+}
 
-function yamaha(command) {
-	device('yamaha', command);
-};
+function getErrorCallback(err) {
+  console.log(`get request error cb, error: ${err}`);
+}
 
-function nec(command) {
-	device('nec', command);
-};
+function request(url, cb = getCallback, errorCb = getErrorCallback) {
+  console.log('getting url ' + url);
+  var getter = get(url, cb)
+    .on('error', errorCb);
+}
 
-function lounge(command) {
-	var url = rootUrl + 'rooms/lounge/' + command;
-  request(url);
-};
-
-function slackomatic(command) {
-	var url = rootUrl + 'functions/' + command;
-  request(url);
-};
+function getUrl(command = false, path = false) {
+  var url = rootUrl;
+  if ( path ) {
+    url += path;
+  }
+  if ( command ) {
+    url += command;
+  }
+  return url;
+}
