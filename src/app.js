@@ -12,12 +12,14 @@ var app = express()
   , debug = ( app.get('env') === 'development' )
 ;
 
+app.set('port', process.env.PORT || 80);
+
 // view engine setup
 app.set('views', join(cwd, 'views'));
 app.set('view engine', 'jade');
 
 app.use(favicon(join(publicDir, 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('short'));
 
 app.use(stylus.middleware(publicDir));
 app.use(express.static(publicDir));
@@ -43,7 +45,8 @@ app.use('/slackomatic/*', (req, res, next) => {
       console.log("Got error: " + e.message);
     }
   });
-  res.status(200).send(`${req.ip}:8080${req.originalUrl}`);
+  console.log(`hostname: ${req.hostname}`);
+  res.status(200).send(`http://127.0.0.1:8080${req.originalUrl}`);
 });
 
 /// catch 404 and forwarding to error handler
@@ -75,6 +78,10 @@ app.use( (err, req, res, next) => {
         message: err.message,
         error: {}
     });
+});
+
+var server = app.listen(app.get('port'), () => {
+  console.log(`Express server listening on port : ${server.address().port}`);
 });
 
 export default app;
