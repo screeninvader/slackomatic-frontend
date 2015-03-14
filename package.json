@@ -28,7 +28,7 @@
     }
   ],
   "scripts": {
-    "start": "babel-node --experimental --ignore='node_modules' -- src/slack.js"
+    "start": "babel-node --experimental --ignore='node_modules' -- slack.js"
   },
   "dependencies": {
     "debug": "~0.7.4",
