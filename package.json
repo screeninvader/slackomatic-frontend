@@ -1,7 +1,9 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
+  "name": "slackomatic-frontend",
+  "version": "0.0.2",
+  "description": "The slackomatic is a homepage that helps controlling the screeninvader in the https://metalab.at",
   "private": true,
+  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
   "scripts": {
     "start": "make run",
     "prepublish": "babel src/ --out-dir dist/ --source-maps"
@@ -13,5 +15,21 @@
     "morgan": "~1.0.0",
     "serve-favicon": "^2.2.0",
     "stylus": "0.42.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaeh/slackomatic-frontend"
+  },
+  "keywords": [
+    "slackomatic",
+    "metalab",
+    "screeninvader",
+    "Slack",
+    "praise",
+    "bob"
+  ],
+  "bugs": {
+    "url": "https://github.com/jaeh/slackomatic-frontend/issues"
+  },
+  "license": "Probably will be AGPL."
 }
