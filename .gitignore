@@ -3,3 +3,4 @@ dist
 *.css
 npm-debug.log
 babel.json
+public/js/main.js
