@@ -1,17 +1,21 @@
 slackomatic frontend
 ====
 
+To install:
+```bash
+git clone https://github.com/jaeh/slackomatic-frontend 
+cd slackomatic-frontend
+bin/install
+```
+
 To run:
 ```bash
-make node #download and install raspbian node packages
-make npm #installs babeljs, forever and express dependencies
+cd slackomatic-frontend
+npm start
+```
 
-# ! if port 80 then you need root for all commands from here on !
-make dev #rebuilds babeljs and restarts node
-#or
-make run #just restarts node, no babel
-
-make list #lists running forever processes
-
-make stopall #stopall running forever processes
+To start on boot in /etc/inittab on raspbian 
+with the source in /home/pi/nodejs:
+```bash
+cd /home/pi/nodejs/ && npm start
 ```
