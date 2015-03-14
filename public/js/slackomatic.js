@@ -1,4 +1,4 @@
-var rootUrl = 'http://10.20.30.90:8080/slackomatic/'
+var rootUrl = '/slackomatic/'
 
 function request(url) {
   var xhr = new XMLHttpRequest()

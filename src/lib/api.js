@@ -2,22 +2,22 @@ import {Router as router} from 'express';
 import {get} from 'http';
 
 var api = router()
-  , debug = true
+  , debugLogging = true
 ;
 
 api.use('*', (req, res, next) => {
-  var url = `http://${req.ip}:8080${req.originalUrl}`;
-  if ( debug ) {
+  var url = `http://10.20.30.90:8080${req.originalUrl}`;
+  if ( debugLogging ) {
     console.log(`loading url: ${url}`);
   }
   get(url, (result) => {
     //do nothing on complete
-    if ( debug ) {
-      console.log(`slackomatic get result: ${result}`);
+    if ( debugLogging ) {
+      console.log(`slackomatic get res ${result.statusCode}`);
     }
   }).on('error', (e) => {
     //do nothing on error
-    if ( debug ) {
+    if ( debugLogging ) {
       console.log("Got error: " + e.message);
     }
   });
