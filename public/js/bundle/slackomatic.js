@@ -5,7 +5,6 @@ var rootUrl = '/slackomatic/';
 //add eventlisteners to all inputs
 export function initSlack() {
   var clickInputs = document.body.querySelectorAll('input[data-command]');
-  console.log('clickInputs.length', clickInputs.length);
 
   for( let i = 0; i < clickInputs.length; i++ ) {
     clickInputs[ i ].addEventListener( 'click', clickEventListener, false );
@@ -18,7 +17,6 @@ function clickEventListener(evt) {
     , dataPath = target.getAttribute('data-path')
     , url = getUrl(dataCommand, dataPath);
   ;
-  console.log('url', url);
   request(url);
 }
 
@@ -31,7 +29,7 @@ function getErrorCallback(err) {
 }
 
 function request(url, cb = getCallback, errorCb = getErrorCallback) {
-  console.log('getting url ' + url);
+  console.log('requesting url', url);
   var getter = get(url, cb)
     .on('error', errorCb);
 }
