@@ -3,24 +3,32 @@ import {get} from 'http';
 
 var api = router()
   , debugLogging = true
+  , lastRequestFinished = true
+  , log = console.log
+  , lastUrl
 ;
 
-api.use('*', (req, res, next) => {
-  var url = `http://10.20.30.90:8080${req.originalUrl}`;
+function debugLog(str) {
   if ( debugLogging ) {
-    console.log(`loading url: ${url}`);
+    console.log(str);
   }
-  get(url, (result) => {
-    //do nothing on complete
-    if ( debugLogging ) {
-      console.log(`slackomatic get res ${result.statusCode}`);
-    }
-  }).on('error', (e) => {
-    //do nothing on error
-    if ( debugLogging ) {
-      console.log("Got error: " + e.message);
-    }
-  });
+}
+
+api.use('*', (req, res, next) => {
+  var url = `http://127.0.0.1:8080${req.originalUrl}`;
+
+  if ( lastUrl !== url ) {
+    lastUrl = url;
+
+    debugLog(`loading url: ${url}`);
+    get(url, (result) => {
+      //do nothing on complete
+      debugLog(`slackomatic get res ${result.statusCode}`);
+    }).on('error', (e) => {
+      //do nothing on error
+      debugLog("Got error: " + e.message);
+    });
+  }
   res.status(200).send(url);
 });
 
