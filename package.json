@@ -27,6 +27,9 @@
       "task": "backend (different repo)"
     }
   ],
+  "scripts": {
+    "start": "babel-node --experimental --ignore='node_modules' -- src/slack.js"
+  },
   "dependencies": {
     "debug": "~0.7.4",
     "express": "~4.0.0",
