@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodejs ./bin/www",
+    "start": "make run",
     "prepublish": "babel src/ --out-dir dist/ --source-maps"
   },
   "dependencies": {
