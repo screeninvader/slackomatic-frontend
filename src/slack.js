@@ -16,7 +16,6 @@ var app = express()
   , logDir = join(cwd, 'log')
   , debug = ( app.get('env') === 'development' )
 ;
-console.log(`cwd: ${cwd}`);
 
 app.set('port', process.env.PORT || 80);
 
@@ -37,15 +36,6 @@ var logFile = join(logDir, 'access.log')
 ;
 app.use(logger(logOptions));
 
-var logFile = join(logDir, 'access.log')
-  , logStream = wStream(logFile, {flags: 'a'})
-  , logOptions = {
-    format: 'tiny'
-  , stream: logStream
-  }
-;
-app.use(logger(logOptions));
-
 app.use(stylus.middleware(publicDir));
 app.use(express.static(publicDir));
 
@@ -55,13 +45,13 @@ app.use(express.static(staticDir, {
 } ) );
 
 //slackomatic api redirect
-app.use(api);
+app.use('/slackomatic', api);
 
 /// catch 404 and forwarding to error handler
 app.use((req, res, next) => {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 /// error handlers
@@ -70,12 +60,9 @@ app.use((req, res, next) => {
 if ( ! errorHandler.hasOwnProperty(env) ) {
   env = 'production';
 }
-
 app.use(errorHandler[env]);
-
 
 app.listen(app.get('port'), () => {
   console.log(`Express server listening on port : ${app.get('port')}`);
 });
 
-export default app;
