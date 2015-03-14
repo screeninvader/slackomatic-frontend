@@ -1,13 +1,8 @@
 {
   "name": "slackomatic-frontend",
   "version": "0.0.2",
-  "description": "The slackomatic is a homepage that helps controlling the screeninvader in the https://metalab.at",
+  "description": "The slackomatic is a homepage that helps controlling the hardware of the screeninvader in the https://metalab.at",
   "private": true,
-  "author": "Jascha Ehrenreich <jascha@jaeh.at>",
-  "scripts": {
-    "start": "make run",
-    "prepublish": "babel src/ --out-dir dist/ --source-maps"
-  },
   "dependencies": {
     "debug": "~0.7.4",
     "express": "~4.0.0",
@@ -24,7 +19,7 @@
     "slackomatic",
     "metalab",
     "screeninvader",
-    "Slack",
+    "slack",
     "praise",
     "bob"
   ],
