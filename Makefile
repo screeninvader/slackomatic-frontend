@@ -1,9 +1,9 @@
 #!/bin/bash
 
 node: #install node
-	rm ./node_latest_armhf.deb -f
-	wget http://node-arm.herokuapp.com/node_latest_armhf.deb
-	sudo dpkg -i node_latest_armhf.deb
+	rm ./node_0.12.0-1_armhf.deb -f
+	wget http://node-arm.herokuapp.com/node_0.12.0-1_armhf.deb
+	sudo dpkg -i node_0.12.0-1_armhf.deb
 
 npm: #install node deps
 	npm install
