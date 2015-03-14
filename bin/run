@@ -1,5 +1,4 @@
 #!/bin/bash
 cd /home/pi/nodejs/;
-./bin/build
 forever stopall
 forever start -l /home/pi/nodejs/log/access.log -o /home/pi/nodejs/log/out.log -e /home/pi/nodejs/log/error.log --uid Slack --append dist/slack.js
