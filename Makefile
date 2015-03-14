@@ -23,7 +23,11 @@ run: #start the app forever
 	-o log/out.log \
 	--append \
 	-p /home/pi/nodejs \
+	--uid "Slack" \
 	dist/app.js
+
+kill:
+	forever stop Slack
 
 list:
 	forever list
