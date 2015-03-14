@@ -1,11 +1,11 @@
 install:
-	sudo su && \
-	add-apt-repository ppa:chris-lea/node.js -y && \
-	apt-get update && \
-	apt-get install -y nodejs && \
-	npm install -g babel
+	sudo add-apt-repository ppa:chris-lea/node.js -y && \
+	sudo apt-get update && \
+	sudo apt-get install -y nodejs && \
+	sudo npm install -g babel
 
 build:
+	npm install
 	npm run prepublish
 
 run: build
