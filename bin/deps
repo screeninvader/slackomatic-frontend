@@ -3,4 +3,4 @@ cd /home/pi/nodejs/;
 
 #install local dependencies, babel and forever
 npm install
-sudo npm install -g babel forever
+sudo npm install -g babel forever browserify babelify

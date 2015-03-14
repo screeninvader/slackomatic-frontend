@@ -31,8 +31,6 @@
     "start": "./bin/run"
   },
   "dependencies": {
-    "babelify": "^5.0.4",
-    "browserify": "^9.0.3",
     "debug": "~0.7.4",
     "express": "~4.0.0",
     "jade": "~1.3.0",
