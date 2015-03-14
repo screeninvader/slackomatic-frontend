@@ -5,4 +5,4 @@ rm ./node_latest_armhf.deb
 
 #install local dependencies, babel and forever
 npm install
-sudo npm install -g babel
+sudo npm install -g babel forever

@@ -1,5 +1,6 @@
 #!/bin/bash
 cd /home/pi/nodejs/;
 ./bin/build
-babel src/ --out-dist slack.js --experimental
-node dist/slack.js
+forever stopall
+forever start -l /home/pi/nodejs/log/access.log -o /home/pi/nodejs/log/out.log -e /home/pi/nodejs/log/error.log --uid Slack --append dist/slack.js
+tail -f -n 50 log/access.log

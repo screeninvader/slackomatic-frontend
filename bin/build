@@ -1,3 +1,4 @@
 #!/bin/bash
-cd /home/pi/nodejs && \
-babel src/ --out-dir dist/ --source-maps --experimental
+cd /home/pi/nodejs/;
+babel src/ --out-dir dist/ --source-maps --experimental;
+browserify public/js/bundle/ --outfile public/js/main.js -t babelify --experimental --source-maps
