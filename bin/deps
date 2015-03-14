@@ -1,0 +1,6 @@
+#!/bin/bash
+cd /home/pi/nodejs/;
+
+#install local dependencies, babel and forever
+npm install
+sudo npm install -g babel forever
