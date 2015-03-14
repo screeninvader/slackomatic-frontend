@@ -1,7 +1,15 @@
+var rootUrl = 'http://10.20.30.90:8080/slackomatic/'
+
+function request(url) {
+  var xhr = new XMLHttpRequest()
+  console.log('getting url');
+  xhr.open('GET', url, true);
+  xhr.send(null);
+}
+
 function device(device, command) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/slackomatic/devices/' + device + '/' + command, true);
-	xhr.send(null);
+  var url = rootUrl + 'devices/' + device + '/' + command;
+  request(url);
 };
 
 function benq(command) {
@@ -17,13 +25,11 @@ function nec(command) {
 };
 
 function lounge(command) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/slackomatic/rooms/lounge/' + command, true);
-	xhr.send(null);
+	var url = rootUrl + 'rooms/lounge/' + command;
+  request(url);
 };
 
 function slackomatic(command) {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/slackomatic/functions/' + command, true);
-	xhr.send(null);
+	var url = rootUrl + 'functions/' + command;
+  request(url);
 };
