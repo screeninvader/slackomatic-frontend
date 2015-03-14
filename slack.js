@@ -4,13 +4,16 @@ import {join} from 'path';
 import favicon from 'serve-favicon';
 import logger from 'morgan';
 import stylus from 'stylus';
+import {createWriteStream as wStream} from 'fs';
 
 var app = express()
   , cwd = process.cwd()
   , staticDir = join(cwd, 'static')
   , publicDir = join(cwd, 'public')
+  , logDir = join(cwd, 'log')
   , debug = ( app.get('env') === 'development' )
 ;
+console.log(`cwd: ${cwd}`);
 
 app.set('port', process.env.PORT || 80);
 
@@ -19,7 +22,26 @@ app.set('views', join(cwd, 'views'));
 app.set('view engine', 'jade');
 
 app.use(favicon(join(publicDir, 'favicon.ico')));
-app.use(logger('short'));
+
+
+//log into one file for now
+var logFile = join(logDir, 'access.log')
+  , logStream = wStream(logFile, {flags: 'a'})
+  , logOptions = {
+    format: 'tiny'
+  , stream: logStream
+  }
+;
+app.use(logger(logOptions));
+
+var logFile = join(logDir, 'access.log')
+  , logStream = wStream(logFile, {flags: 'a'})
+  , logOptions = {
+    format: 'tiny'
+  , stream: logStream
+  }
+;
+app.use(logger(logOptions));
 
 app.use(stylus.middleware(publicDir));
 app.use(express.static(publicDir));
@@ -80,8 +102,8 @@ app.use( (err, req, res, next) => {
     });
 });
 
-var server = app.listen(app.get('port'), () => {
-  console.log(`Express server listening on port : ${server.address().port}`);
+app.listen(app.get('port'), () => {
+  console.log(`Express server listening on port : ${app.get('port')}`);
 });
 
 export default app;
