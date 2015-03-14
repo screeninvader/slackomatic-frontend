@@ -5,8 +5,11 @@ import favicon from 'serve-favicon';
 import logger from 'morgan';
 import stylus from 'stylus';
 import {createWriteStream as wStream} from 'fs';
+import api from './lib/api';
+import errorHandler from './lib/errorHandler';
 
 var app = express()
+  , env = app.get('env')
   , cwd = process.cwd()
   , staticDir = join(cwd, 'static')
   , publicDir = join(cwd, 'public')
@@ -51,25 +54,8 @@ app.use(express.static(staticDir, {
   extensions:'html'
 } ) );
 
-app.use('/slackomatic/*', (req, res, next) => {
-  var url = `http://${req.ip}:8080${req.originalUrl}`;
-  if ( debug ) {
-    console.log(`loading url: ${url}`);
-  }
-  get(url, (result) => {
-    //do nothing on complete
-    if ( debug ) {
-      console.log(`result: ${result}`);
-    }
-  }).on('error', (e) => {
-    //do nothing on error
-    if ( debug ) {
-      console.log("Got error: " + e.message);
-    }
-  });
-  console.log(`hostname: ${req.hostname}`);
-  res.status(200).send(`http://127.0.0.1:8080${req.originalUrl}`);
-});
+//slackomatic api redirect
+app.use(api);
 
 /// catch 404 and forwarding to error handler
 app.use((req, res, next) => {
@@ -79,28 +65,14 @@ app.use((req, res, next) => {
 });
 
 /// error handlers
-
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
-  app.use( (err, req, res, next) => {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
+if ( ! errorHandler.hasOwnProperty(env) ) {
+  env = 'production';
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use( (err, req, res, next) => {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+app.use(errorHandler[env]);
+
 
 app.listen(app.get('port'), () => {
   console.log(`Express server listening on port : ${app.get('port')}`);
