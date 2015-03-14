@@ -53,5 +53,9 @@
   "bugs": {
     "url": "https://github.com/jaeh/slackomatic-frontend/issues"
   },
-  "license": "Probably will be AGPL."
+  "license": "Probably will be AGPL.",
+  "devDependencies": {
+    "babelify": "^5.0.4",
+    "browserify": "^9.0.3"
+  }
 }
