@@ -4,6 +4,7 @@ node: #install node
 	rm ./node_0.12.0-1_armhf.deb -f
 	wget http://node-arm.herokuapp.com/node_0.12.0-1_armhf.deb
 	sudo dpkg -i node_0.12.0-1_armhf.deb
+	rm ./node_0.12.0-1_armhf.deb
 
 npm: #install node deps
 	npm install
@@ -17,10 +18,11 @@ build: #run babel compiler
 
 run: #start the app forever
 	forever start \
-	-l ./log/access.log \
-	-e ./log/error.log \
-	-o ./log/out.log \
+	-l log/access.log \
+	-e log/error.log \
+	-o log/out.log \
 	--append \
+	-p /home/pi/nodejs \
 	dist/app.js
 
 list:
