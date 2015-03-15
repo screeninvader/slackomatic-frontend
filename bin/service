@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /home/pi/nodejs;
+
+forever-service delete slack
+forever-service install slack -s dist/slack.js --start
