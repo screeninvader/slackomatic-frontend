@@ -1,3 +1,4 @@
 #!/bin/bash
 cd /home/pi/nodejs/;
-node dist/slack.js
+sudo node dist/slack.js
+
