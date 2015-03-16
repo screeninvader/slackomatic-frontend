@@ -1,0 +1,101 @@
+extends ../layout
+
+block content
+  section.device
+    +sectionTitle('Master power')
+    div.ui
+      input.on(type='button' data-path='rooms/lounge/' data-command='power/on' value='ON')
+      input.off(type='button' data-path='rooms/lounge/' data-command='power/off' value='OFF')
+    div.description
+      | This will turn on/off both the projector and the hifi
+
+  section.system
+    +sectionTitle('Select the system you want to use')
+    section.sub.entertainment
+      h3 Entertainment
+      div.ui
+        input(type='button' data-path='rooms/lounge/' data-command='devices/screeninvader' title='ScreenInvader' value='ScreenInvader')
+        input(type='button' data-path='rooms/lounge/' data-command='devices/chromecast' title='Chromecast' value='Chromecast')
+    section.sub.games
+      h3 Games
+      div.ui
+        input(type='button' data-path='rooms/lounge/' data-command='devices/ps2' title='PS2' value='PS2')
+        input(type='button' data-path='rooms/lounge/' data-command='devices/ps3' title='PS3' value='PS3')
+        input(type='button' data-path='rooms/lounge/' data-command='devices/wii' title='Wii' value='Wii')
+
+    section.sub.local
+      h3 Your Laptop
+      div.ui
+        input(type='button' data-path='rooms/lounge/' data-command='devices/own_hdmi' title='My own HDMI port' value='HDMI port')
+        input(type='button' data-path='rooms/lounge/' data-command='devices/own_audio_klinke' title='My own Audio Klinke' value='Audio/Klinke')
+        input(type='button' data-path='rooms/lounge/' data-command='devices/bt' title='Philips BT Headset' value='BT Headset')
+
+    div.description.
+      The audio and video of the selected device will be shown on the projector and played on the hifi. To display stuff from your own HDMI capable device just connect the black spare HDMI cable and select 'My own HDMI port'.
+      
+  section.volume
+    +sectionTitle('Volume')
+
+    div.ui
+      input(type='button' data-path='devices/yamaha/' data-command='volume/low' title='Low' value='Low')
+      input(type='button' data-path='devices/yamaha/' data-command='volume/medium' title='Medium' value='Medium')
+      input(type='button' data-path='devices/yamaha/' data-command='volume/high' title='High' value='High')
+          
+
+  section.lighting.five
+    +sectionTitle('Lighting')
+    div.ui 
+      input(type='button' data-path='rooms/lounge/' data-command='lighting/off' title='Off' value='Night')
+      
+      input(type='button' data-path='rooms/lounge/' data-command='lighting/super_chillig' title='Boo\!' value='spooky')
+      
+      input(type='button' data-path='rooms/lounge/' data-command='lighting/chillig' title='Smooooth\.' value='smooth')
+      
+      input(type='button' data-path='rooms/lounge/' data-command='lighting/normal' title='Bunch o\' normals' value='Normal')
+      
+      input(type='button' data-path='rooms/lounge/' data-command='lighting/chinese_sweatshop' title='Praise BoB' value='NoSlack')
+
+  section.powerSaving
+    +sectionTitle('Power saving')
+ 
+    section.sub.projector
+      h3 Projector
+      div.ui
+        input.on(type='button' data-path='rooms/lounge/' data-command='powersaving/projector/power/on' title='Turn the projector ON' value='Projector \n ON')
+        input.off(type='button' data-path='rooms/lounge/' data-command='powersaving/projector/power/off' title='Turn the projector OFF' value='Projector \n OFF')
+      div.ui
+        input.on(type='button' data-path='rooms/lounge/' data-command='powersaving/projector/blank/off' title='Unblank the projector' value='Unblank \n projector')
+        input.off(type='button' data-path='rooms/lounge/' data-command='powersaving/projector/blank/on' title='Blank the projector' value='Blank \n projector')
+
+    section.sub.tv
+      h3 TV
+      div.ui
+        input.on(type='button' data-path='rooms/lounge/' data-command='powersaving/tv/power/on' title='Turn the TV ON' value='Turn TV \n ON')
+        input.off(type='button' data-path='rooms/lounge/' data-command='powersaving/tv/power/off' title='Turn the TV OFF' value='Turn TV \n OFF')
+      
+      
+    section.sub.yamaha
+      h3 Yamaha ON/OFF
+      div.ui
+        input.on(type='button' data-path='rooms/lounge/' data-command='powersaving/yamaha/power/on' title='Turn the Yamaha ON' value='Yamaha \n ON')
+        input.off(type='button' data-path='rooms/lounge/' data-command='powersaving/yamaha/power/off' title='Turn the Yamaha OFF' value='Yamaha \n OFF')
+    section.sub.metacade
+      h3 Metacade ON/OFF
+      div.ui
+        input.on(type='button' data-path='rooms/lounge/' data-command='powersaving/metacade/power/on' title='Turn the Metacade ON' value='Metacade \n ON')
+        input.off(type='button' data-path='rooms/lounge/' data-command='powersaving/metacade/power/off' title='Turn the Metacade OFF' value='Metacade \n OFF')
+
+    section.sub.lamp1
+      h3 Square Lamp
+      div.ui
+        input.on( type='button' data-path='rooms/lounge/' data-command='powersaving/lamp1/power/on' title='Turn the square lamp ON' value='Lamp \n ON')
+        input.off( type='button' data-path='rooms/lounge/' data-command='powersaving/lamp1/power/off' title='Turn the square lamp OFF' value='Lamp \n OFF')
+
+  section.faq
+    +sectionTitle('Any questions, need help?')
+    div.description
+      | If you are not familiar with the setup and something doesn't work as expected please
+      | ask a fellow hacker/hackette around first before attempting to 'fix it'(tm) yourself.
+      | You might also take a look at the 
+      a(target='_blank' href='troubleshooting.html') troubleshooting
+      |  guide.
