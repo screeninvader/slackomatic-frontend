@@ -1,2 +1,5 @@
-import {initSlack} from './slackomatic';
-initSlack();
+import {initApi} from './slackomatic';
+initApi();
+
+import {initUi} from './ui';
+initUi();
