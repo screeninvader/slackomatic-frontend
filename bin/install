@@ -1,4 +1,5 @@
 #!/bin/bash
+#move to app root directory
 cd /home/pi/nodejs/;
 
 #installs dependencies needed for production

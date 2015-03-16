@@ -1,8 +1,15 @@
 #~/bin/bash
+#move to app root directory
 cd /home/pi/nodejs;
 
+#creates dist directory and prebuilds app there
 ./bin/build
 
+#removes all files from the source directory (frontend goes down at this point)
+ssh root@10.20.30.90 'rm -rf /home/pi/nodejs/* -r'
+
+#copy the prebuilt dist directory to the production root
 scp -r ./dist/* root@10.20.30.90:/home/pi/nodejs/
 
+#call killkillkill to kill the app and force respawn by inittab
 curl http://10.20.30.90/killkillkill
