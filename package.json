@@ -4,6 +4,38 @@
   "description": "The slackomatic is a homepage that helps controlling the hardware of the screeninvader in the https://metalab.at",
   "private": true,
   "author": "Metalab <metalab@lists.metalab.at>",
+  "scripts": {
+    "start": "./bin/build && ./bin/run"
+  },
+  "dependencies": {
+    "express": "~4.0.0",
+    "morgan": "~1.0.0",
+    "serve-favicon": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/screeninvader/slackomatic-frontend"
+  },
+  "keywords": [
+    "slackomatic",
+    "metalab",
+    "screeninvader",
+    "slack",
+    "praise",
+    "bob"
+  ],
+  "bugs": {
+    "url": "https://github.com/screeninvader/slackomatic-frontend/issues"
+  },
+  "license": "Probably will be AGPL.",
+  "devDependencies": {
+    "babel": "^4.7.12",
+    "babelify": "^5.0.4",
+    "browserify": "^9.0.3",
+    "jade": "^1.9.2",
+    "nib": "^1.1.0",
+    "stylus": "^0.50.0"
+  },
   "contributors": [
     {
       "name": "jascha ehrenreich",
@@ -26,32 +58,5 @@
       "github": "kallaballa",
       "task": "backend (different repo)"
     }
-  ],
-  "scripts": {
-    "start": "./bin/run"
-  },
-  "dependencies": {
-    "debug": "~0.7.4",
-    "express": "~4.0.0",
-    "jade": "~1.3.0",
-    "morgan": "~1.0.0",
-    "serve-favicon": "^2.2.0",
-    "stylus": "0.42.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jaeh/slackomatic-frontend"
-  },
-  "keywords": [
-    "slackomatic",
-    "metalab",
-    "screeninvader",
-    "slack",
-    "praise",
-    "bob"
-  ],
-  "bugs": {
-    "url": "https://github.com/jaeh/slackomatic-frontend/issues"
-  },
-  "license": "Probably will be AGPL."
+  ]
 }
