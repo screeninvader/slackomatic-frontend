@@ -1,13 +1,27 @@
 #!/bin/bash
 cd /home/pi/nodejs/;
+#first install all dependencies
+npm install
+
 #compile ecmascript7 to es5
 node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
+
 #copy public dir to dist
 cp public dist -r
-#remove css directory from dist, stylus will readd
+#remove css directory from dist, stylus will add it again
 rm ./dist/public/css/* -r
+rm ./dist/public/js/* -r
+
 #compile client side js
-node_modules/.bin/browserify public/js/bundle/ --outfile dist/public/js/main.js -t babelify
+node_modules/.bin/browserify public/js/ --outfile dist/public/js/main.js -t babelify
+
+
+#installs a google webfont for local use and serving
+./node_modules/webfont-dl/bin/webfont-dl http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
+  --font-out=dist/public/font \
+  --out public/css/include/font.styl \
+  --css-rel=/font
+
 #compile css files
 node_modules/.bin/stylus \
   public/css/slackomatic.styl \
@@ -28,9 +42,9 @@ chmod +x ./dist/bin/run
 mkdir ./dist/log -p
 
 #copy package.json to dist
+echo 'copying package.json to dist'
 cp package.json ./dist/package.json
-echo 'copied package.json to dist'
 
-echo 'installing npm production dependencies' 
 #install production dependencies in dist
+echo 'installing npm production dependencies' 
 cd ./dist && npm install --production && cd ../
