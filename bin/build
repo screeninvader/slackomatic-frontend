@@ -35,16 +35,21 @@ node_modules/.bin/jade views/pages/*.jade --out dist/views/
 mkdir ./dist/bin  -p
 #copy the run bin file to the dist dir
 cp ./bin/run-production ./dist/bin/run
-#make dist/bin/run executable
+#make sure dist/bin/run is executable
 chmod +x ./dist/bin/run
+
+#copy node-raspbian install, needed for updates and first install
+cp ./bin/install-node-raspbian ./dist/bin/install-node-raspbian
+#make sure dist/bin/install-node-raspbian is executable
+chmod +x ./dist/bin/install-node-raspbian
 
 #create log directory for node app if not exists
 mkdir ./dist/log -p
 
-#copy package.json to dist
+#copy package.json to dist for install below
 echo 'copying package.json to dist'
 cp package.json ./dist/package.json
 
-#install production dependencies in dist
+#npm install production dependencies in dist
 echo 'installing npm production dependencies' 
 cd ./dist && npm install --production && cd ../
