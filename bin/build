@@ -5,6 +5,6 @@ node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
 #compile client side js
 node_modules/.bin/browserify public/js/bundle/ --outfile public/js/main.js -t babelify
 #compile css files
-node_modules/.bin/stylus public/css --import ./node_modules/nib/
+node_modules/.bin/stylus public/css/slackomatic.styl --import ./node_modules/nib/
 #compile html files
 #node_modules/.bin/jade
