@@ -28,14 +28,13 @@ body
   border-color #fff
   border-radius 15px 
   margin 0 auto
-  padding 1.5em 0
+  padding 0
   text-align center
   width 90%
 
   > section
     display inline-block
     width 100%
-    margin 0 0 2em
 
 
 a,
@@ -43,7 +42,7 @@ a:visited
   color rgb(200,200,200)
 
 h2
-  border-top 3px solid #fff
+  border-top 2px solid #fff
   font-size 1.2em
   font-weight bold
   text-align center
@@ -90,7 +89,7 @@ footer.main
   text-align center
 
   li
-    padding 2em
+    padding .5em
     display block
     width 100%
 
@@ -116,7 +115,8 @@ div.ui
     &.on
       color green
     &.off
-      color red    width 100%
+      color red
+      width 100%
 
     /* one item */
     &:first-child:nth-last-child(1)
@@ -177,33 +177,64 @@ div.ui
     &:first-child:nth-last-child(10) ~ input 
       width 100%
 
-@media all and (min-width 600px)
-  div.ui
-    input
-      /* three items */
-      &:first-child:nth-last-child(3),
-      &:first-child:nth-last-child(3) ~ input
-        width 33.333%
-        display inline
-        float left
-        child-borders()
+section.system
+  section.sub.games
+    width 30%
+    float left
+  section.sub.local
+    width 70%
+    float right
 
-      /* four items */
-      &:first-child:nth-last-child(4),
-      &:first-child:nth-last-child(4) ~ input 
-        width 24.99%
-        display inline
-        float left
-        child-borders()
+@media all and (max-width 600px)
+  .wrapper 
+    > section
+      transition opacity .5s, height .5s
+      max-height 100%
+
+      &.hidden
+        cursor pointer
+        max-height 40px
+        overflow hidden
+
+        div, input, section.sub
+          opacity 0
+          height 0
+
+
+@media all and (min-width 600px)
+  body
+    .wrapper
+      section
+        div.ui
+          input
+            /* three items */
+            &:first-child:nth-last-child(3),
+            &:first-child:nth-last-child(3) ~ input
+              width 33.333%
+              display inline
+              float left
+              child-borders()
+
+            /* four items */
+            &:first-child:nth-last-child(4),
+            &:first-child:nth-last-child(4) ~ input 
+              width 24.99%
+              display inline
+              float left
+              child-borders()
+        section.sub
+          &.projectorblank,
+          &.projector,
+          &.tv,
+          &.yamaha,
+          &.metacade,
+          &.lamp1
+            width 33.333%
+            display inline-block
 
 @media all and (min-width 800px)
   body
     font-size 19px
-
-    section.volume
-      width 41%
-    section.lighting
-      width 59%
 
     div.wrapper
       div.ui
@@ -216,41 +247,44 @@ div.ui
             float left
             child-borders()
 
-      section.system
-        section.sub
-          float left
-          width 30%
 
-          div.ui
-            input
-              width 100%
-              border-radius 13px
-
-          &.entertainment
-            width 28%
-
-          &.games
-            width 22%
-          &.local
-            width 50%
-
-      section.powerSaving
-        section.sub
-          &.projector
-            div.ui
-              width 50%
-              float left
-          &.tv,
-          &.yamaha,
-          &.metacade
-            float left
-            width 33%
       section.projector
         section.sub
           width 33%
           float left
 
-@media all and (min-width 1300px)
+      section.device
+        width 30%
+        float left
+
+      section.system
+        width 70%
+        float right
+        border-left 2px solid #fff
+
+        section.sub
+          float left
+
+          &.entertainment
+            width 35%
+          &.games
+            width 30%
+          &.local
+            width 35%
+
+          div.ui
+            input
+              width 100%
+              border-radius 13px
+        
+        h2
+          border-top-width 0
+      
+      section.volume
+        width 30%
+        float left
+
+@media all and (min-width 1200px)
   body
     font-size 18px
     div.wrapper
@@ -265,3 +299,23 @@ div.ui
             display inline
             float left
             child-borders()
+
+      section.device
+        width 20%
+        float left
+
+      section.system
+        width 60%
+        float right
+        border-left 2px solid #fff
+
+      section.volume
+        width 20%
+        float left
+        h2
+          border-top-width 0
+
+      section.lighting
+        width 40%
+        float right
+        border-left 2px solid #fff
