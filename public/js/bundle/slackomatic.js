@@ -9,14 +9,30 @@ export function initSlack() {
   for( let i = 0; i < clickInputs.length; i++ ) {
     clickInputs[ i ].addEventListener( 'click', clickEventListener, false );
   }
+  request('room/lounge/', 'powersaving/killswitch/reset');
 }
 
-function clickEventListener(evt) {
-  var target = evt.target
-    , dataCommand = target.getAttribute('data-command')
-    , dataPath = target.getAttribute('data-path')
-    , url = getUrl(dataCommand, dataPath);
+function clickEventListener(evt, command = false) {  
+  var url = ''
+    , dataCommand
+    , dataPath
   ;
+  if ( evt && typeof evt === 'string' ) {
+    if ( command && typeof command === 'string' ) {
+      dataCommand = command;
+      dataPath = evt;
+    } else {
+      dataCommand = evt;
+    }
+  }
+  if ( evt.target && typeof evt.target.getAttribute === 'function' ) {
+    var target = evt.target;
+    dataCommand = target.getAttribute('data-command');
+    dataPath = target.getAttribute('data-path');
+  }
+  
+  url = getUrl(dataCommand, dataPath);
+
   request(url);
 }
 
