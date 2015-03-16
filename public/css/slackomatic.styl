@@ -1,39 +1,267 @@
-.slackomatic
+global-reset()
+
+child-borders()
+  border-width 3px
+  &:first-child
+    border-radius 13px 0 0 13px
+    border-right-width 1.5px
+  &:nth-child(1n+2)
+    border-radius 0
+    border-right-width 1.5px
+    border-left-width 1.5px
+  &:last-child
+    border-radius 0 13px 13px 0
+    border-left-width 1.5px
+
+
+@import 'include/font'
+@import 'include/sanity'
+
+body
+  font-size 20px
   color #FFFFFF
-  background-color #000000
-  font-family Verdana
+  background-color #121212
 
-.device_name
-  color #BC00A7
-  font-weight bold
-  font-style italic
-  text-align left 
-  font-family Arial
-
-
-.device 
+.wrapper
+  background-color #333
   border 3px solid 
-  width 500px 
+  border-color #fff
   border-radius 15px 
-  background-color #8882BE 
-  border-color #BC00A7
+  margin 0 auto
+  padding 1.5em 0
+  text-align center
+  width 90%
+
+  > section
+    display inline-block
+    width 100%
+    margin 0 0 2em
 
 
-.input_select 
-  width 100% 
-  border-radius 15px 
-  -moz-border-radius 15px
-  -webkit-border-radius 15px	
-
-
-a link 
-  color #BC00A7
-
-
-a visited 
-  color #BC00A7
+a,
+a:visited 
+  color rgb(200,200,200)
 
 h2
+  border-top 3px solid #fff
+  font-size 1.2em
   font-weight bold
-  text-align left
-  font-size 1em
+  text-align center
+  padding .5em 0
+
+  span
+    &:first-child
+      float left
+    &:last-child
+      float right
+
+.wrapper
+  section:first-child
+    h2
+      border-top-width 0
+
+h3
+  margin 1em 0 0
+
+.device 
+  h2
+    border-top 0 none
+
+section.sub
+  h2
+    border-top 0 none
+    text-align center
+
+
+header.main
+  width 100%
+  text-align center
+
+  img
+    max-width 100%
+
+div.description
+  clear both
+  padding 1em
+
+footer.main
+  margin 2.5em 0
+  width 100%
+  text-align center
+
+  li
+    padding 2em
+    display block
+    width 100%
+
+    a
+      color #fff
+
+
+
+div.ui
+  padding .5em
+  input
+    background-color rgb(200,200,200)
+    display block
+    margin .2em 0
+    padding .2em
+    white-space pre-line
+    width 100%
+    font-size 1em
+    border 3px solid #fff
+    font-weight bold
+    border-radius 13px
+
+    &.on
+      color green
+    &.off
+      color red    width 100%
+
+    /* one item */
+    &:first-child:nth-last-child(1)
+      width 100%
+
+    /* two items*/
+    &:first-child:nth-last-child(2),
+    &:first-child:nth-last-child(2) ~ input
+      width 50%
+      display inline
+
+      &:first-child
+        border-top-right-radius 0
+        border-bottom-right-radius 0
+        border-right-width 1.5px
+      &:last-child
+        border-top-left-radius 0
+        border-bottom-left-radius 0
+        border-left-width 1.5px
+
+    /* three items */
+    &:first-child:nth-last-child(3),
+    &:first-child:nth-last-child(3) ~ input
+      width 100%
+
+    /* four items */
+    &:first-child:nth-last-child(4),
+    &:first-child:nth-last-child(4) ~ input 
+      width 100%
+
+    /* five items */
+    &:first-child:nth-last-child(5),
+    &:first-child:nth-last-child(5) ~ input 
+      width 100%
+    
+    /* six items */
+    &:first-child:nth-last-child(6),
+    &:first-child:nth-last-child(6) ~ input 
+      width 100%
+
+    /* seven items */
+    &:first-child:nth-last-child(7),
+    &:first-child:nth-last-child(7) ~ input 
+      width 100%
+
+    /* eight items */
+    &:first-child:nth-last-child(8),
+    &:first-child:nth-last-child(8) ~ input 
+      width 100%
+    
+    /* nine items */
+    &:first-child:nth-last-child(9),
+    &:first-child:nth-last-child(9) ~ input 
+      width 100%
+    
+    /* ten items */
+    &:first-child:nth-last-child(10),
+    &:first-child:nth-last-child(10) ~ input 
+      width 100%
+
+@media all and (min-width 600px)
+  div.ui
+    input
+      /* three items */
+      &:first-child:nth-last-child(3),
+      &:first-child:nth-last-child(3) ~ input
+        width 33.333%
+        display inline
+        float left
+        child-borders()
+
+      /* four items */
+      &:first-child:nth-last-child(4),
+      &:first-child:nth-last-child(4) ~ input 
+        width 24.99%
+        display inline
+        float left
+        child-borders()
+
+@media all and (min-width 800px)
+  body
+    font-size 19px
+
+    section.volume
+      width 41%
+    section.lighting
+      width 59%
+
+    div.wrapper
+      div.ui
+        input
+          /* five items */
+          &:first-child:nth-last-child(5),
+          &:first-child:nth-last-child(5) ~ input
+            width 19.9%
+            display inline
+            float left
+            child-borders()
+
+      section.system
+        section.sub
+          float left
+          width 30%
+
+          div.ui
+            input
+              width 100%
+              border-radius 13px
+
+          &.entertainment
+            width 28%
+
+          &.games
+            width 22%
+          &.local
+            width 50%
+
+      section.powerSaving
+        section.sub
+          &.projector
+            div.ui
+              width 50%
+              float left
+          &.tv,
+          &.yamaha,
+          &.metacade
+            float left
+            width 33%
+      section.projector
+        section.sub
+          width 33%
+          float left
+
+@media all and (min-width 1300px)
+  body
+    font-size 18px
+    div.wrapper
+      div.ui
+        input
+          padding .2em
+          margin .2em 0
+          /* six items */
+          &:first-child:nth-last-child(6),
+          &:first-child:nth-last-child(6) ~ input
+            width 15%
+            display inline
+            float left
+            child-borders()
