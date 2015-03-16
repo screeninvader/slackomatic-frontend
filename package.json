@@ -34,7 +34,8 @@
     "browserify": "^9.0.3",
     "jade": "^1.9.2",
     "nib": "^1.1.0",
-    "stylus": "^0.50.0"
+    "stylus": "^0.50.0",
+    "webfont-dl": "^0.1.2"
   },
   "contributors": [
     {
