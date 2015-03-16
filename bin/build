@@ -2,9 +2,14 @@
 cd /home/pi/nodejs/;
 #compile ecmascript7 to es5
 node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
+cp public dist -r
 #compile client side js
-node_modules/.bin/browserify public/js/bundle/ --outfile public/js/main.js -t babelify
+node_modules/.bin/browserify public/js/bundle/ --outfile dist/public/js/main.js -t babelify
 #compile css files
 node_modules/.bin/stylus public/css/slackomatic.styl --import ./node_modules/nib/
 #compile html files
+node_modules/.bin/jade views/pages/*.jade --out dist/views/
+
+mkdir ./dist/bin 
 #node_modules/.bin/jade
+cp ./bin/run ./dist/bin/run
