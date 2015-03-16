@@ -3,6 +3,9 @@ cd /home/pi/nodejs/;
 #first install all dependencies
 npm install
 
+#remove dist directory
+sudo rm -rf ./dist
+
 #compile ecmascript7 to es5
 node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
 
