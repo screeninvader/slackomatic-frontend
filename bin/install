@@ -3,8 +3,9 @@ cd /home/pi/nodejs/;
 
 #installs dependencies needed for production
 npm install --production
+npm install webfont-dl
 #installs a google webfont for local use and serving
-webfont-dl http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
+./node_modules/webfont-dl/bin/webfont-dl http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
   --font-out=public/font \
   --out public/css/include/font.styl \
   --css-rel=/font
