@@ -1,13 +1,15 @@
 global-reset()
 
 no-child-borders()
-  border 3px solid #fff
   &:first-child
     border-radius 13px
+    border-width 3px
   &:nth-child(1n+2)
     border-radius 13px
+    border-width 3px
   &:last-child
     border-radius 13px
+    border-width 3px
 
 child-borders()
   border-width 3px
@@ -231,6 +233,7 @@ section#system
               display inline
               float left
               child-borders()
+
         section.sub
           &.projectorblank,
           &.projector,
@@ -280,9 +283,10 @@ section#system
 
         section.sub
           float left
-
           &.entertainment
             width 35%
+            input
+              no-child-borders()
           &.games
             width 30%
           &.local
@@ -292,7 +296,7 @@ section#system
             input
               width 100%
               border-radius 13px
-        
+
         h2
           border-top-width 0
       
@@ -303,6 +307,22 @@ section#system
         width 70%
         border-left 2px solid #fff
         float right
+
+
+@media all and (min-width 900px)
+  body
+    font-size 18px
+    div.wrapper
+      section.sub
+        &.projectorblank,
+        &.projector,
+        &.tv,
+        &.yamaha,
+        &.metacade,
+        &.lamp1
+          width 16.666%
+          display inline-block
+
 
 @media all and (min-width 1200px)
   body
@@ -332,24 +352,10 @@ section#system
       section#volume
         width 20%
         float left
+        border-left 2px solid #fff
+
         h2
           border-top-width 0
 
       section#lighting
         width 40%
-        float right
-        border-left 2px solid #fff
-
-@media all and (min-width 900px)
-  body
-    font-size 18px
-    div.wrapper
-      section.sub
-        &.projectorblank,
-        &.projector,
-        &.tv,
-        &.yamaha,
-        &.metacade,
-        &.lamp1
-          width 16.666%
-          display inline-block
