@@ -1,4 +1,8 @@
-#install node for raspbian
-wget -N http://node-arm.herokuapp.com/node_latest_armhf.deb
-sudo dpkg -i node_latest_armhf.deb
-rm ./node_latest_armhf.deb
+#!/bin/bash
+cd /home/pi/nodejs/;
+
+#installs dependencies needed for production
+npm install --production
+#installs a google webfont for local use and serving
+webfont-dl http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
+  -o public/css/font.css --font-out=public/font --out public/css/include/font.styl --woff1=link --woff2=link
