@@ -2,67 +2,57 @@ import express from 'express';
 import {get} from 'http';
 import {join} from 'path';
 import favicon from 'serve-favicon';
-import logger from 'morgan';
-import stylus from 'stylus';
-import {createWriteStream as wStream} from 'fs';
 import api from './lib/api';
 import errorHandler from './lib/errorHandler';
+import {view} from './lib/view';
+import logger from './lib/logger';
 
-var app = express()
-  , env = app.get('env')
+var slack = express()
+  , env = slack.get('env')
   , cwd = process.cwd()
   , staticDir = join(cwd, 'static')
   , publicDir = join(cwd, 'public')
-  , logDir = join(cwd, 'log')
-  , debug = ( app.get('env') === 'development' )
 ;
 
-app.set('port', process.env.PORT || 80);
+slack.set('port', process.env.PORT || 80);
 
 // view engine setup
-app.set('views', join(cwd, 'views'));
-app.set('view engine', 'jade');
+slack.set('views', join(cwd, 'views'));
+slack.set('view engine', 'jade');
 
-app.use(favicon(join(publicDir, 'favicon.ico')));
+slack.use(favicon(join(publicDir, 'favicon.ico')));
 
+//if requested path exists in /public it gets served from there
+slack.use(express.static(publicDir));
 
-//log into one file for now
-var logFile = join(logDir, 'access.log')
-  , logStream = wStream(logFile, {flags: 'a'})
-  , logOptions = {
-    format: 'tiny'
-  , stream: logStream
-  }
-;
-app.use(logger(logOptions));
-
-app.use(stylus.middleware(publicDir));
-app.use(express.static(publicDir));
-
-//load static html files for now
-app.use(express.static(staticDir, {
-  extensions:'html'
-} ) );
+logger(slack);
 
 //slackomatic api redirect
-app.use('/slackomatic', api);
+slack.use('/slackomatic', api);
+
+//renders :page from views/pages
+slack.use('/:page', view);
+
+//renders views/pages/index
+slack.use('/', (req, res, next) => {
+  req.params.page = 'index';
+  view(req, res, next);
+});
 
 /// catch 404 and forwarding to error handler
-app.use((req, res, next) => {
+slack.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-/// error handlers
-// development error handler
-// will print stacktrace
+// error handlers
+// development error handler prints stacktrace
 if ( ! errorHandler.hasOwnProperty(env) ) {
   env = 'production';
 }
-app.use(errorHandler[env]);
+slack.use(errorHandler[env]);
 
-app.listen(app.get('port'), () => {
-  console.log(`Express server listening on port : ${app.get('port')}`);
+slack.listen(slack.get('port'), () => {
+  console.log(`Express server listening on port : ${slack.get('port')}`);
 });
-
