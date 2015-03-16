@@ -2,14 +2,21 @@
 cd /home/pi/nodejs/;
 #compile ecmascript7 to es5
 node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
+#copy public dir to dist
 cp public dist -r
+#remove css directory from dist, stylus will readd
+rm ./dist/public/css/* -r
 #compile client side js
 node_modules/.bin/browserify public/js/bundle/ --outfile dist/public/js/main.js -t babelify
 #compile css files
-node_modules/.bin/stylus public/css/slackomatic.styl --import ./node_modules/nib/
+node_modules/.bin/stylus \
+  public/css/slackomatic.styl \
+  --import ./node_modules/nib/ \
+  --out dist/public/css/slackomatic.css
 #compile html files
 node_modules/.bin/jade views/pages/*.jade --out dist/views/
 
-mkdir ./dist/bin 
-#node_modules/.bin/jade
-cp ./bin/run ./dist/bin/run
+#create dist/bin directory if not exists
+mkdir ./dist/bin  -p
+#copy the run bin file to the dist dir
+cp ./bin/run-production ./dist/bin/run
