@@ -37,11 +37,16 @@ block content
   section.volume
     +sectionTitle('Volume')
 
-    div.ui
-      input(type='button' data-path='devices/yamaha/' data-command='volume/low' title='Low' value='Low')
-      input(type='button' data-path='devices/yamaha/' data-command='volume/medium' title='Medium' value='Medium')
-      input(type='button' data-path='devices/yamaha/' data-command='volume/high' title='High' value='High')
-          
+    section.sub.levels
+      h3 Levels
+      div.ui
+        input(type='button' data-path='devices/yamaha/' data-command='volume/low' title='Low' value='Low')
+        input(type='button' data-path='devices/yamaha/' data-command='volume/medium' title='Medium' value='Medium')
+        input(type='button' data-path='devices/yamaha/' data-command='volume/high' title='High' value='High')
+      h3 Mute
+      div.ui
+        input.on(type='button' data-path='devices/yamaha/' data-command='mute/off' title="Mute Sound" value="Unmute")
+        input.off(type='button' data-path='devices/yamaha/' data-command='mute/on' title="Mute Sound" value="Mute")
 
   section#lighting.lighting
     +sectionTitle('Lighting')

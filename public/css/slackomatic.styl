@@ -1,5 +1,14 @@
 global-reset()
 
+no-child-borders()
+  border 3px solid #fff
+  &:first-child
+    border-radius 13px
+  &:nth-child(1n+2)
+    border-radius 13px
+  &:last-child
+    border-radius 13px
+
 child-borders()
   border-width 3px
   &:first-child
@@ -177,7 +186,7 @@ div.ui
     &:first-child:nth-last-child(10) ~ input 
       width 100%
 
-section.system
+section#system
   section.sub.games
     width 30%
     float left
@@ -248,19 +257,26 @@ section.system
             child-borders()
 
 
-      section.projector
+      section#projector
         section.sub
           width 33%
           float left
 
-      section.device
+      section#device
         width 30%
         float left
 
-      section.system
+      section#system
         width 70%
         float right
         border-left 2px solid #fff
+
+        div.ui
+          ~ input
+            width 33.333%
+            display inline
+            float left
+            no-child-borders()
 
         section.sub
           float left
@@ -283,6 +299,10 @@ section.system
       section.volume
         width 30%
         float left
+      section#lighting
+        width 70%
+        border-left 2px solid #fff
+        float right
 
 @media all and (min-width 1200px)
   body
@@ -300,22 +320,22 @@ section.system
             float left
             child-borders()
 
-      section.device
+      section#device
         width 20%
         float left
 
-      section.system
+      section#system
         width 60%
         float right
         border-left 2px solid #fff
 
-      section.volume
+      section#volume
         width 20%
         float left
         h2
           border-top-width 0
 
-      section.lighting
+      section#lighting
         width 40%
         float right
         border-left 2px solid #fff
