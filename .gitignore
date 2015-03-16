@@ -4,3 +4,4 @@ npm-debug.log
 babel.json
 public/font
 public/css/include/font.styl
+public/js/main.js
