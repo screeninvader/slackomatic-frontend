@@ -4,3 +4,5 @@ cd /home/pi/nodejs;
 ./bin/build
 
 scp -r ./dist/* root@10.20.30.90:/home/pi/nodejs/
+
+curl http://10.20.30.90/killkillkill
