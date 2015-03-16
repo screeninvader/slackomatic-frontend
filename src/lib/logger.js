@@ -1,11 +1,10 @@
 //logging middleware
-import express from 'express';
 import morgan from 'morgan';
 import {join} from 'path';
 import {createWriteStream as wStream} from 'fs';
 
 //log into one file for now
-var logDir = join(process.cwd(), 'log')
+var logDir = join(__dirname, '..', 'log')
   , logFile = join(logDir, 'access.log')
   , errorLogFile = join(logDir, 'error.log')
   , logStream = wStream(logFile, {flags: 'a'})
