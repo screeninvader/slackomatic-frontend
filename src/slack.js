@@ -4,21 +4,17 @@ import {join} from 'path';
 import favicon from 'serve-favicon';
 import api from './lib/api';
 import errorHandler from './lib/errorHandler';
-import {view} from './lib/view';
 import logger from './lib/logger';
+import killer from './lib/killer';
 
 var slack = express()
-  , env = slack.get('env')
-  , cwd = process.cwd()
-  , staticDir = join(cwd, 'static')
+  , env       = slack.get('env')
+  , cwd       = __dirname
+  , viewDir   = join(cwd, 'views')
   , publicDir = join(cwd, 'public')
 ;
 
 slack.set('port', process.env.PORT || 80);
-
-// view engine setup
-slack.set('views', join(cwd, 'views'));
-slack.set('view engine', 'jade');
 
 slack.use(favicon(join(publicDir, 'favicon.ico')));
 
@@ -30,14 +26,9 @@ logger(slack);
 //slackomatic api redirect
 slack.use('/slackomatic', api);
 
-//renders :page from views/pages
-slack.use('/:page', view);
+slack.use(killer);
 
-//renders views/pages/index
-slack.use('/', (req, res, next) => {
-  req.params.page = 'index';
-  view(req, res, next);
-});
+slack.use(express.static(viewDir));
 
 /// catch 404 and forwarding to error handler
 slack.use((req, res, next) => {
@@ -54,5 +45,5 @@ if ( ! errorHandler.hasOwnProperty(env) ) {
 slack.use(errorHandler[env]);
 
 slack.listen(slack.get('port'), () => {
-  console.log(`Express server listening on port : ${slack.get('port')}`);
+  console.log(`slacking on port : ${slack.get('port')}`);
 });
