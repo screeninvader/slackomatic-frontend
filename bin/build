@@ -13,6 +13,7 @@ node_modules/.bin/stylus \
   public/css/slackomatic.styl \
   --import ./node_modules/nib/ \
   --out dist/public/css/slackomatic.css
+
 #compile html files
 node_modules/.bin/jade views/pages/*.jade --out dist/views/
 
@@ -20,3 +21,16 @@ node_modules/.bin/jade views/pages/*.jade --out dist/views/
 mkdir ./dist/bin  -p
 #copy the run bin file to the dist dir
 cp ./bin/run-production ./dist/bin/run
+#make dist/bin/run executable
+chmod +x ./dist/bin/run
+
+#create log directory for node app if not exists
+mkdir ./dist/log -p
+
+#copy package.json to dist
+cp package.json ./dist/package.json
+echo 'copied package.json to dist'
+
+echo 'installing npm production dependencies' 
+#install production dependencies in dist
+cd ./dist && npm install --production && cd ../
