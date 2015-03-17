@@ -13,3 +13,4 @@ scp -r ./dist/* root@10.20.30.90:/home/pi/nodejs/
 
 #call killkillkill to kill the app and force respawn by inittab
 curl http://10.20.30.90/killkillkill
+echo ''
