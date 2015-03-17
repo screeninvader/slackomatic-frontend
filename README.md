@@ -1,7 +1,13 @@
 slackomatic frontend
 ====
 
-######!!! Assumes that the app root is in /home/pi/nodejs !!!
+######!!! Assumes that the app root is in /home/pi/nodejs!!!
+######the git clone instructions below will fail if this directory does not exist
+
+#What does this app do?
+This nodejs application serves the frontend for the slackomatic api.
+a bunch of html, css, javascript and image files served using expressjs
+
 ```bash
 #clone git repository
 git clone https://github.com/jaeh/slackomatic-frontend /home/pi/nodejs
