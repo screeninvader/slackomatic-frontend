@@ -7,7 +7,6 @@ import errorHandler from './lib/errorHandler';
 import logger from './lib/logger';
 import killer from './lib/killer';
 import {view} from './lib/view';
-import info from './public/versions.json';
 
 var slack = express()
   , env       = slack.get('env')
@@ -39,10 +38,6 @@ slack.use(express.static(staticDir, {
   extensions: ["html"], //add html extension
   index: true //always load index.html files on /
 }));
-
-slack.use('/slackomatic', (req, res, next) => {
-  res.locals.info = info;
-});
 
 //renders :page from views/pages
 slack.use('/:page', view);
