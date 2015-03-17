@@ -1,11 +1,6 @@
 #!/bin/bash
 #move to app root directory
 cd /home/pi/nodejs/;
-#first install all dependencies
-npm install
-
-#remove dist directory
-sudo rm -rf dist
 
 #compile ecmascript7 to es5
 node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
@@ -14,16 +9,11 @@ node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
 cp public dist -r
 #remove css directory from dist, stylus will add it again
 rm dist/public/css/* -r
+#remove js directory from dist, browserify will add it again
 rm dist/public/js/* -r
 
 #compile client side js
 node_modules/.bin/browserify public/js/ --outfile dist/public/js/main.js -t babelify
-
-#installs a google webfont for local use and serving
-./node_modules/webfont-dl/bin/webfont-dl http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
-  --font-out=dist/public/font \
-  --out public/css/include/font.styl \
-  --css-rel=/font
 
 #compile css files
 node_modules/.bin/stylus \
@@ -44,25 +34,5 @@ mv dist/views/static/* dist/views/pages/
 rm dist/views/static -r
 
 
-#create dist/bin directory if not exists
-mkdir dist/bin  -p
-#copy the run bin file to the dist dir
-cp bin/run-production dist/bin/run
-#make sure dist/bin/run is executable
-chmod +x dist/bin/run
-
-#copy node-raspbian install, needed for updates and first install
-cp bin/install-node-raspbian dist/bin/install-node-raspbian
-#make sure dist/bin/install-node-raspbian is executable
-chmod +x dist/bin/install-node-raspbian
-
 #create log directory for node app if not exists
 mkdir dist/log -p
-
-#copy package.json to dist for install below
-echo 'copying package.json to dist'
-cp package.json dist/package.json
-
-#npm install production dependencies in dist
-echo 'installing npm production dependencies' 
-cd dist && npm install --production && cd ../
