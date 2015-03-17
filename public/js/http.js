@@ -1,4 +1,4 @@
-import {css, getErrorEle} from './utils';
+import {showError} from './utils';
 
 export function get(url){
   var xhr = new XMLHttpRequest()
@@ -6,15 +6,13 @@ export function get(url){
   xhr.timeout = 4000;
   xhr.onreadystatechange = () => {
     if (xhr.readyState == 4) {
-      if ( xhr.status === 500 ) {
-        var errorEle = getErrorEle('API Connect Error');
-        css.toggleClass(document.body, 'connection-error');
-        var timeOut = setTimeout(() => {
-          clearTimeout(timeOut);
-          css.toggleClass(document.body, 'connection-error');
-          getErrorEle('');
-        }, 3000);
-      };
+      //valid http error codes
+      console.log('status', xhr.status);
+      if ( xhr.status >= 400 && xhr.status <= 599 ) {
+        showError(`API ${xhr.status} Error`);
+      } else if (xhr.status === 200 ) {
+        console.log(`API call returned a 200`);
+      }
     }
   }
   
