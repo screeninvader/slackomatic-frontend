@@ -1,9 +1,5 @@
 node_modules
-*.css
 npm-debug.log
 babel.json
-public/font
-public/css/include/font.styl
-public/js/main.js
 dist
-
+public/css/include/font.styl
