@@ -18,13 +18,12 @@ api.use((req, res, next) => {
 
   debugLog(`loading url: ${url}`);
   get(url, (result) => {
-    //do nothing on complete
     debugLog(`slackomatic get res ${result.statusCode}`);
+    res.status(200).send(`Slackomatic get request <span color="green">succeeded</span>: redirected request to backend url ${url}`);
   }).on('error', (e) => {
-    //do nothing on error
     debugLog("Got error: " + e.message);
+    res.status(500).send(`Slackomatic get request <span color="red">errored</span>: redirected request to backend url ${url}`);
   });
-  res.status(200).send(`redirected request to backend url ${url}`);
 });
 
 export default api;
