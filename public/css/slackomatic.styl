@@ -66,6 +66,23 @@ h2
     &:last-child
       float right
 
+#error
+  height 0
+  opacity 0
+  background-color #b00
+  color #fff
+  border-bottom 2px solid #800
+  line-height 2em
+  transition all .5s
+  font-size 0
+  text-align center
+  
+body.connection-error
+  #error
+    height 2em
+    opacity 1
+    font-size 15px
+
 .wrapper
   section:first-child
     h2
