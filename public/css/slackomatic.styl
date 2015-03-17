@@ -17,21 +17,21 @@ child-borders()
     border-radius 13px 0 0 13px
     border-right-width 1.5px
   &:nth-child(1n+2)
+    border-left-width 1.5px
     border-radius 0
     border-right-width 1.5px
-    border-left-width 1.5px
   &:last-child
-    border-radius 0 13px 13px 0
     border-left-width 1.5px
+    border-radius 0 13px 13px 0
 
 
 @import 'include/font'
 @import 'include/sanity'
 
 body
-  font-size 20px
-  color #FFFFFF
   background-color #121212
+  color #FFFFFF
+  font-size 20px
 
 .wrapper
   background-color #333
@@ -47,7 +47,6 @@ body
     display inline-block
     width 100%
 
-
 a,
 a:visited 
   color rgb(200,200,200)
@@ -56,8 +55,8 @@ h2
   border-top 2px solid #fff
   font-size 1.2em
   font-weight b.3em 0 0old
-  text-align center
   padding .2em 0 0
+  text-align center
 
   span
     line-height 1em
@@ -67,21 +66,22 @@ h2
       float right
 
 #error
-  height 0
-  opacity 0
   background-color #b00
-  color #fff
   border-bottom 2px solid #800
-  line-height 2em
-  transition all .5s
+  color #fff
   font-size 0
+  height 0
+  line-height 2em
+  opacity 0
+  position fixed
+  transition all .5s
   text-align center
   
 body.connection-error
   #error
+    font-size 15px
     height 2em
     opacity 1
-    font-size 15px
 
 .wrapper
   section:first-child
@@ -102,8 +102,8 @@ section.sub
 
 
 header.main
-  width 100%
   text-align center
+  width 100%
 
   img
     max-width 100%
@@ -118,8 +118,8 @@ footer.main
   text-align center
 
   li
-    padding .5em
     display block
+    padding .5em
     width 100%
 
     a
@@ -131,15 +131,15 @@ div.ui
   padding .5em
   input
     background-color rgb(200,200,200)
+    border 3px solid #fff
+    border-radius 13px
     display block
+    font-size 1em
+    font-weight bold
     margin .2em 0
     padding .2em
     white-space pre-line
     width 100%
-    font-size 1em
-    border 3px solid #fff
-    font-weight bold
-    border-radius 13px
 
     &.on
       color green
@@ -154,17 +154,17 @@ div.ui
     /* two items*/
     &:first-child:nth-last-child(2),
     &:first-child:nth-last-child(2) ~ input
-      width 50%
       display inline
+      width 50%
 
       &:first-child
-        border-top-right-radius 0
         border-bottom-right-radius 0
         border-right-width 1.5px
+        border-top-right-radius 0
       &:last-child
-        border-top-left-radius 0
         border-bottom-left-radius 0
         border-left-width 1.5px
+        border-top-left-radius 0
 
     /* three items */
     &:first-child:nth-last-child(3),
@@ -208,17 +208,17 @@ div.ui
 
 section#system
   section.sub.games
-    width 30%
     float left
+    width 30%
   section.sub.local
-    width 70%
     float right
+    width 70%
 
 @media all and (max-width 600px)
   .wrapper 
     > section
-      transition opacity .5s, height .5s
       max-height 100%
+      transition opacity .5s, height .5s
 
       &.hidden
         cursor pointer
@@ -226,8 +226,8 @@ section#system
         overflow hidden
 
         div, input, section.sub
-          opacity 0
           height 0
+          opacity 0
 
 
 @media all and (min-width 600px)
@@ -239,17 +239,17 @@ section#system
             /* three items */
             &:first-child:nth-last-child(3),
             &:first-child:nth-last-child(3) ~ input
-              width 33.333%
               display inline
               float left
+              width 33.333%
               child-borders()
 
             /* four items */
             &:first-child:nth-last-child(4),
             &:first-child:nth-last-child(4) ~ input 
-              width 24.99%
               display inline
               float left
+              width 24.99%
               child-borders()
 
         section.sub
@@ -259,8 +259,8 @@ section#system
           &.yamaha,
           &.metacade,
           &.lamp1
-            width 33.333%
             display inline-block
+            width 33.333%
 
     footer.main
       li
@@ -280,34 +280,34 @@ section#system
           /* five items */
           &:first-child:nth-last-child(5),
           &:first-child:nth-last-child(5) ~ input
-            width 19.9%
             display inline
             float left
+            width 19.9%
             child-borders()
 
 
       section#projector
         section.sub
-          width 33%
           float left
+          width 33%
 
       section#device
-        width 30%
         float left
+        width 30%
 
       section#system
-        width 70%
-        float right
         border-left 2px solid #fff
+        float right
+        width 70%
 
         h3
           margin 0
 
         div.ui
           ~ input
-            width 33.333%
             display inline
             float left
+            width 33.333%
             no-child-borders()
 
         section.sub
@@ -323,19 +323,19 @@ section#system
 
           div.ui
             input
-              width 100%
               border-radius 13px
+              width 100%
 
         h2
           border-top-width 0
       
       section.volume
-        width 30%
         float left
+        width 30%
       section#lighting
-        width 70%
         border-left 2px solid #fff
         float right
+        width 70%
 
 
 @media all and (min-width 900px)
@@ -349,8 +349,8 @@ section#system
         &.yamaha,
         &.metacade,
         &.lamp1
-          width 16.666%
           display inline-block
+          width 16.666%
 
 
 @media all and (min-width 1200px)
@@ -359,29 +359,29 @@ section#system
     div.wrapper
       div.ui
         input
-          padding .2em
           margin .2em 0
+          padding .2em
           /* six items */
           &:first-child:nth-last-child(6),
           &:first-child:nth-last-child(6) ~ input
-            width 15%
             display inline
             float left
+            width 15%
             child-borders()
 
       section#device
-        width 20%
         float left
+        width 20%
 
       section#system
-        width 60%
-        float right
         border-left 2px solid #fff
+        float right
+        width 60%
 
       section#volume
-        width 20%
-        float left
         border-left 2px solid #fff
+        float left
+        width 20%
 
         h2
           border-top-width 0
