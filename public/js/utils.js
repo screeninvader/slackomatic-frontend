@@ -32,6 +32,19 @@ export var css = {
   }
 };
 
+export function getErrorEle(val) {
+  var errorEle = document.querySelector('#error');
+  if ( ! errorEle || ! isFunc(errorEle.getAttribute) ) {
+    errorEle = document.createElement('div');
+    errorEle.id = 'error';
+    document.body.insertBefore(errorEle, document.body.firstChild)
+  }
+  if ( typeof val === 'string' ) {
+    errorEle.innerText = val;
+  }
+  return errorEle;
+}
+
 
 export function hasLocalStorage() {
   try {
