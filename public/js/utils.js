@@ -3,6 +3,23 @@ export function isFunc(val) {
   return typeof val === 'function';
 }
 
+var allTimeouts = [];
+
+export function showError(error) {
+  var errorEle = getErrorEle(error);
+  if ( typeof error === 'string' ) {
+    css.addClass(document.body, 'connection-error');
+    allTimeouts.push(
+      setTimeout( () => {
+        each(allTimeouts, (timeOut) => {
+          clearTimeout(timeOut);
+        });
+        css.removeClass(document.body, 'connection-error');
+      }, 3000)
+    );
+  }
+}
+
 export function each (arrOrObj, func) {
   if ( typeof arrOrObj === 'array' ) {
     for ( let i = 0; i < arrOrObj.length; i++ ) {
@@ -23,12 +40,21 @@ export function each (arrOrObj, func) {
 export var css = {
   toggleClass : (ele, name) => {
     if ( ele.className.indexOf(name) > -1 ) {
-      ele.classList.remove(name);
+      removeClass(ele, name);
       return false;
     } else {
-      ele.classList.add(name);
+      addClass(ele, name);
       return true;
     }
+  },
+  hasClass: (ele, name) => {
+    return ele.className.indexOf(name) > -1;
+  },
+  addClass: (ele, name) => {
+    ele.classList.add(name);
+  },
+  removeClass: (ele, name) => {
+    ele.classList.remove(name);
   }
 };
 
