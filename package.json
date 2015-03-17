@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "express": "~4.0.0",
+    "jade": "^1.9.2",
     "morgan": "~1.0.0",
     "serve-favicon": "^2.2.0"
   },
@@ -32,7 +33,6 @@
     "babel": "^4.7.12",
     "babelify": "^5.0.4",
     "browserify": "^9.0.3",
-    "jade": "^1.9.2",
     "nib": "^1.1.0",
     "stylus": "^0.50.0",
     "webfont-dl": "^0.1.2"
