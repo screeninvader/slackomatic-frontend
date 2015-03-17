@@ -5,7 +5,7 @@ cd /home/pi/nodejs/;
 npm install
 
 #remove dist directory
-sudo rm -rf ./dist
+sudo rm -rf dist
 
 #compile ecmascript7 to es5
 node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
@@ -13,12 +13,11 @@ node_modules/.bin/babel src/ --out-dir dist/ --experimental --source-maps
 #copy public dir to dist
 cp public dist -r
 #remove css directory from dist, stylus will add it again
-rm ./dist/public/css/* -r
-rm ./dist/public/js/* -r
+rm dist/public/css/* -r
+rm dist/public/js/* -r
 
 #compile client side js
 node_modules/.bin/browserify public/js/ --outfile dist/public/js/main.js -t babelify
-
 
 #installs a google webfont for local use and serving
 ./node_modules/webfont-dl/bin/webfont-dl http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
@@ -29,31 +28,41 @@ node_modules/.bin/browserify public/js/ --outfile dist/public/js/main.js -t babe
 #compile css files
 node_modules/.bin/stylus \
   public/css/slackomatic.styl \
-  --import ./node_modules/nib/ \
+  --import node_modules/nib/ \
   --out dist/public/css/slackomatic.css
 
 #compile html files
-node_modules/.bin/jade views/pages/*.jade --out dist/views/
+node_modules/.bin/jade views/static/* --out dist/static/
+
+#make view dir in dist
+mkdir dist/views/ -p
+#copy views to serve with jade if html files do not exist 
+cp views/* dist/views/ -r
+#copy static pages from static to pages directory
+mv dist/views/static/* dist/views/pages/
+#remove static directory
+rm dist/views/static -r
+
 
 #create dist/bin directory if not exists
-mkdir ./dist/bin  -p
+mkdir dist/bin  -p
 #copy the run bin file to the dist dir
-cp ./bin/run-production ./dist/bin/run
+cp bin/run-production dist/bin/run
 #make sure dist/bin/run is executable
-chmod +x ./dist/bin/run
+chmod +x dist/bin/run
 
 #copy node-raspbian install, needed for updates and first install
-cp ./bin/install-node-raspbian ./dist/bin/install-node-raspbian
+cp bin/install-node-raspbian dist/bin/install-node-raspbian
 #make sure dist/bin/install-node-raspbian is executable
-chmod +x ./dist/bin/install-node-raspbian
+chmod +x dist/bin/install-node-raspbian
 
 #create log directory for node app if not exists
-mkdir ./dist/log -p
+mkdir dist/log -p
 
 #copy package.json to dist for install below
 echo 'copying package.json to dist'
-cp package.json ./dist/package.json
+cp package.json dist/package.json
 
 #npm install production dependencies in dist
 echo 'installing npm production dependencies' 
-cd ./dist && npm install --production && cd ../
+cd dist && npm install --production && cd ../
