@@ -4,6 +4,7 @@
   "description": "The slackomatic is a homepage that helps controlling the hardware of the screeninvader in the https://metalab.at",
   "private": true,
   "author": "Metalab <metalab@lists.metalab.at>",
+  "license": "Probably will be AGPL.",
   "scripts": {
     "start": "./bin/build && ./bin/run"
   },
@@ -28,7 +29,6 @@
   "bugs": {
     "url": "https://github.com/screeninvader/slackomatic-frontend/issues"
   },
-  "license": "Probably will be AGPL.",
   "devDependencies": {
     "babel": "^4.7.12",
     "babelify": "^5.0.4",
@@ -41,23 +41,19 @@
     {
       "name": "jascha ehrenreich",
       "email": "jascha@jaeh.at",
-      "github": "jaeh",
-      "task": "frontend (this repo)"
+      "github": "jaeh"
     },
     {
       "name": "norpol",
-      "github": "norpol",
-      "task": "frontend (this repo)"
+      "github": "norpol"
     },
     {
       "name": "m68k",
-      "github": "sixtyeight",
-      "task": "backend (different repo)"
+      "github": "sixtyeight"
     },
     {
       "name": "Amir Hassan",
-      "github": "kallaballa",
-      "task": "backend (different repo)"
+      "github": "kallaballa"
     }
   ]
 }
