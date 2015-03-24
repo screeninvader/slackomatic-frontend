@@ -21,8 +21,9 @@ api.use((req, res, next) => {
     debugLog(`slackomatic get res ${result.statusCode}`);
     res.status(200).send(`Slackomatic get request <span color="green">succeeded</span>: redirected request to backend url ${url}`);
   }).on('error', (e) => {
-    debugLog("Got error: " + e.message);
-    res.status(500).send(`Slackomatic get request <span color="red">errored</span>: redirected request to backend url ${url}`);
+    debugLog("Got error: " + e.errno);
+    
+    res.status(500).send(`Slackomatic <span color="red">${e.errno} errored</span>: ${e.message}`);
   });
 });
 
