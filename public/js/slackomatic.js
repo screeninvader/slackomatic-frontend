@@ -1,4 +1,4 @@
-import {get} from './http';
+import {get} from './utils/http';
 import {each, isFunc} from './utils';
 
 var rootUrl = '/slackomatic/';

@@ -1,4 +1,5 @@
-import {each, isFunc, css, hasStore, hasLocalStorage} from './utils';
+import {each, isFunc, hasStore, hasLocalStorage} from './utils';
+import dom from './utils/dom';
 
 export function initUi() {
   var sections = document.querySelectorAll('.wrapper > section')
@@ -23,11 +24,13 @@ export function initUi() {
 }
 
 function clickEventListener(evt) {
-  var section = evt.target.parentNode.parentNode.parentNode
-    , isToggled = css.toggleClass(section, 'hidden')
+  var section = dom.parent(evt.target, 'section');
+  
   ;
-  if ( hasStore ) {
-    var settingName = section.getAttribute('id');
+  if ( hasStore && isObj(section.onclick) ) {
+    let settingName = section.getAttribute('id')
+      , isToggled = dom.class.toggle(section, 'hidden')
+    ;
     if ( settingName ) {
       localStorage.set('ui-settings-' + settingName, isToggled);
     }

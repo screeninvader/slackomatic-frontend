@@ -1,4 +1,4 @@
-import {showError} from './utils';
+import {showError} from './notices';
 
 export function get(url){
   var xhr = new XMLHttpRequest()
