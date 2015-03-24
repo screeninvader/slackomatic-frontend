@@ -24,7 +24,6 @@ child-borders()
     border-left-width 1.5px
     border-radius 0 13px 13px 0
 
-
 @import 'include/font'
 @import 'include/sanity'
 
@@ -65,24 +64,34 @@ h2
     &:last-child
       float right
 
-#error
-  background-color #b00
-  border-bottom 2px solid #800
-  color #fff
-  font-size 0
-  height 0
-  line-height 2em
-  opacity 0
-  position fixed
-  text-align center
-  transition font-size .5s, height .5s, opacity .5s
-  width 100%
+body
+  #notices
+    .notice
+      font-size 15px
+      left 0
+      opacity 0
+      position fixed
+      text-align center
+      top -30px
+      transition top .5s, opacity .5s
+      width 100%
+      line-height 2em
+      z-index 0
 
-body.connection-error
+      &.visible
+        opacity 1
+        top 0
+        z-index 1
+
   #error
-    font-size 15px
-    height 2em
-    opacity 1
+    color #fff
+    background-color #b00
+    border-bottom 2px solid #800
+
+  #success
+    color #fff
+    background-color #0c0
+    border-bottom 2px solid #080
 
 .wrapper
   section:first-child
@@ -216,19 +225,29 @@ section#system
     width 70%
 
 @media all and (max-width 600px)
-  .wrapper 
-    > section
-      max-height 100%
-      transition opacity .5s, height .5s
+  body
+    .wrapper 
+      > section
+        max-height 100%
+        transition all .5s
 
-      &.hidden
-        cursor pointer
-        max-height 40px
-        overflow hidden
+        div
+          overflow hidden
+          max-height 100%
+          opacity 1
+          transition all .5s
 
-        div, input, section.sub
-          height 0
-          opacity 0
+        &.hidden
+          cursor pointer
+          max-height 40px
+
+          div,
+          section.sub,
+          section.sub h3
+            max-height 0
+            opacity 0
+            padding 0
+            margin 0
 
 
 @media all and (min-width 600px)
@@ -334,7 +353,6 @@ section#system
         float left
         width 30%
       section#lighting
-        border-left 2px solid #fff
         float right
         width 70%
 
@@ -353,6 +371,7 @@ section#system
           display inline-block
           width 16.666%
 
+    
 
 @media all and (min-width 1200px)
   body
