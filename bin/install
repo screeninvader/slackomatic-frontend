@@ -8,7 +8,7 @@ npm install
 sudo rm -rf dist
 
 #installs a google webfont for local use and serving
-./node_modules/webfont-dl/bin/webfont-dl http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
+./node_modules/.bin/webfont-dl https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700 \
   --font-out=dist/public/font \
   --out public/css/include/font.styl \
   --css-rel=/font
