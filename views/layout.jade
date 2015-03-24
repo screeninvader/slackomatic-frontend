@@ -6,12 +6,12 @@ mixin sectionTitle(text)
       span &#x25C0
   
 doctype html
-html
+html(manifest='slackomatic.appcache')
   head
-    meta( http-equiv="Content-Type" content="text/html; charset=UTF-8")
+    meta( http-equiv='Content-Type' content='text/html; charset=UTF-8')
     block title
       title slackomatic
-    link(rel="stylesheet" type="text/css" href="/css/slackomatic.css") 
+    link(rel='stylesheet' type='text/css' href='/css/slackomatic.css') 
     meta(name='viewport' content='width=device-width, initial-scale=1')
 
   body.slackomatic
@@ -20,4 +20,4 @@ html
       block content
     include footer
 
-    script(src="/js/slackomatic.js")
+    script(src='/js/slackomatic.js')

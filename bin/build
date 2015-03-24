@@ -21,6 +21,11 @@ node_modules/.bin/stylus \
   --import node_modules/nib/ \
   --out dist/public/css/slackomatic.css
 
+#copy slackomatic.appcache
+cp public/slackomatic.appcache dist/ -f
+current_timestamp=`date +%s`
+sed -i -e "s/|date|/${current_timestamp}/g" dist/slackomatic.appcache
+
 #compile html files
 node_modules/.bin/jade views/static/* --out dist/static/
 
