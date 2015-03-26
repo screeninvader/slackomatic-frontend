@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# |date|
+
+# Explicitly cached 'master entries'.
+CACHE:
+index.html
+
+# Resources that require the user to be online.
+NETWORK:
+*
