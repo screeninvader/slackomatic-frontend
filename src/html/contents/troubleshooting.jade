@@ -1,0 +1,24 @@
+include ../mixins
+
+section.troubleshooting
+  section.sub.video-projector
+    +sectionTitle('Video ouput doesn\'t change on the projector')
+    p
+      | Please be patient, 
+      | this problem occurs because the projector sometimes 
+      | needs some time to decide what to do next. 
+      | Just press the button for the system again after a few seconds.
+
+  section.sub.yamaha-input
+    +sectionTitle('Yamaha doesn\'t change input')
+    p
+      | The Yamaha web interface has some stability problems 
+      | (requests just time out). 
+      | Please power toggle the Yamaha
+      | using the physical button on the device itself. 
+      | After standby/on the interface was available again last time.
+  
+  section.sub.onandoffagain
+    +sectionTitle('Also')
+    p
+      | (Did you try turning it off and on again?)

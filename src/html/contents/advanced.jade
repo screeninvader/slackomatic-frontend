@@ -1,0 +1,122 @@
+include ../mixins
+
+section.projector
+  +sectionTitle('BenQ projector')
+
+  section.sub.power
+    h2 Power
+    div.ui
+      input.on(type="button" data-path="devices/benq/" data-command="power/on" value="ON")
+      input.off(type="button" data-path="devices/benq/" data-command="power/off" value="OFF")
+
+  section.sub.blank
+    h2 Blank
+    div.ui
+      input.on(type="button" data-path="devices/benq/" data-command="display/blank/on" value="ON")
+      input.off(type="button" data-path="devices/benq/" data-command="display/blank/off" value="OFF")
+
+  section.sub.brilliant
+    h2 Brilliant
+    div.ui
+      input.on(type="button" data-path="devices/benq/" data-command="display/brilliant/on" value="ON")
+      input.off(type="button" data-path="devices/benq/" data-command="display/brilliant/off" value="OFF")
+    
+  
+section.input
+  +sectionTitle('Input')
+  div.ui
+    input(type="button" data-path="devices/benq/" data-command="display/input/vga1" value="VGA1")
+    input(type="button" data-path="devices/benq/" data-command="display/input/vga2" value="VGA2")
+    input(type="button" data-path="devices/benq/" data-command="display/input/hdmi" value="HDMI")
+    input(type="button" data-path="devices/benq/" data-command="display/input/video" value="AV")
+
+section.nec
+  +sectionTitle('NEC TV')
+  
+  section.sub.power
+    h2 Power
+    div.ui
+      input.on(type="button" data-path="devices/nec/" data-command="power/on" value="ON")
+      input.off(type="button" data-path="devices/nec/" data-command="power/off" value="OFF")
+
+  section.sub.input
+    h2 Input
+    div.ui
+      input(type="button" data-path="devices/nec/" data-command="display/input/hdmi" value="HDMI")
+      input(type="button" data-path="devices/nec/" data-command="display/input/dvi" value="DVI")
+      input(type="button" data-path="devices/nec/" data-command="display/input/vga" value="VGA")
+
+  section.sub.pip
+    h2 Pip
+    div.ui
+      input.on(type="button" data-path="devices/nec/" data-command="pip/on" value="ON")
+      input.off(type="button" data-path="devices/nec/" data-command="pip/off" value="OFF")
+  
+  section.sub.pipsize
+    h2 PIP Size
+    div.ui
+      input(type="button" data-path="devices/nec/" data-command="pip/size/small" value="Small")
+      input(type="button" data-path="devices/nec/" data-command="pip/size/medium" value="Medium")
+      input(type="button" data-path="devices/nec/" data-command="size/large" value="Large")
+
+  section.sub.piporpop
+    h2 PIP or POP
+    div.ui
+      input.on(type="button" data-path="devices/nec/" data-command="pip/mode/pip" value="PIP")
+      input.off(type="button" data-path="devices/nec/" data-command="pip/mode/pop" value="POP")
+        
+  section.sub.aspect
+    h2 Aspect
+    div.ui
+      input(type="button" data-path="devices/nec/" data-command="pip/mode/side_by_side_aspect" value="SideBySide Aspect")
+      input(type="button" data-path="devices/nec/" data-command="pip/mode/side_by_side_full" value="SideBySide Full")
+  
+  section.sub.input
+    h2 PIP Input
+    div.ui
+      input(type="button" data-path="devices/nec/" data-command="pip/input/hdmi" value="HDMI")
+      input(type="button" data-path="devices/nec/" data-command="pip/input/dvi" value="DVI")
+      input(type="button" data-path="devices/nec/" data-command="pip/input/vga" value="VGA")
+
+section.yamaha
++sectionTitle('Yamaha AV system')
+section.sub.power
+  h2 Power
+  div.ui
+    input.on(type="button" data-path="devices/yamaha/" data-command="power/on" value="ON")
+    input.off(type="button" data-path="devices/yamaha/" data-command="power/off" value="OFF")
+section.sub.mute
+  h2 Mute
+  div.ui
+    input.on(type="button" data-path="devices/yamaha/" data-command="mute/on" value="ON")
+    input.off(type="button" data-path="devices/yamaha/" data-command="mute/off" value="OFF")
+
+section.source
+  +sectionTitle('Input source')
+  section.sub.av
+    h2 AV
+    div.ui
+      input(type="button" data-path="devices/yamaha/" data-command="input/av1" title='AV1' value="AV1")
+      input(type="button" data-path="devices/yamaha/" data-command="input/av2" title='AV2' value="AV2")
+      input(type="button" data-path="devices/yamaha/" data-command="input/av3" title='AV3' value="AV3")
+      input(type="button" data-path="devices/yamaha/" data-command="input/av4" title='AV4' value="AV4")
+      input(type="button" data-path="devices/yamaha/" data-command="input/av5" title='AV5' value="AV5")
+      input(type="button" data-path="devices/yamaha/" data-command="input/av6" title='AV6' value="AV6")
+  
+  section.sub.hdmi
+    h2 HDMI
+    div.ui
+      input(type="button" data-path="devices/yamaha/" data-command="input/hdmi1" title='HDMI1' value="HDMI1")
+      input(type="button" data-path="devices/yamaha/" data-command="input/hdmi2" title='HDMI2' value="HDMI2")
+      input(type="button" data-path="devices/yamaha/" data-command="input/hdmi3" title='HDMI3' value="HDMI3")
+      input(type="button" data-path="devices/yamaha/" data-command="input/hdmi4" title='HDMI4' value="HDMI4")
+      input(type="button" data-path="devices/yamaha/" data-command="input/hdmi5" title='HDMI5' value="HDMI5")
+
+  section.sub.audio
+    h2 AUDIO
+    div.ui
+      input(type="button" data-path="devices/yamaha/" data-command="input/audio1" title='AUDIO1' value="AUDIO1")
+      input(type="button" data-path="devices/yamaha/" data-command="input/audio2" title='AUDIO2' value="AUDIO2")
+      input(type="button" data-path="devices/yamaha/" data-command="input/audio3" title='AUDIO3' value="AUDIO3")
+      input(type="button" data-path="devices/yamaha/" data-command="input/audio4" title='AUDIO4' value="AUDIO4")
+
