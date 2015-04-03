@@ -2,8 +2,8 @@ CACHE MANIFEST
 # |date|
 
 CACHE:
-/
-index.html
+/favicon.ico
+/index.html
 
 FALLBACK:
 / /index.html
