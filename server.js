@@ -2,7 +2,8 @@ import {createServer} from 'http';
 import {join} from 'path';
 import {readFileSync as read} from 'fs';
 
-var pages = ['/', '/index.html', '/advanced', '/troubleshooting']
+var port = process.argv[2] || 1337
+  , pages = ['/', '/index.html', '/advanced', '/troubleshooting']
   , files = {
       '/': {
           mime: 'text/html'
@@ -44,6 +45,6 @@ var server = createServer( (req, res) => {
   }
 });
 
-server.listen(1337);
+server.listen(port);
 
-console.log('Server listening to port 1337');
+console.log(`Servomatic listening to port ${port}`);
