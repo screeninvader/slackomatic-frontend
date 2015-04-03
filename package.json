@@ -6,13 +6,15 @@
   "author": "Metalab <metalab@lists.metalab.at>",
   "license": "Probably will be AGPL.",
   "scripts": {
-    "start": "./bin/build && ./bin/run"
+    "prod": "./cli.sh build && sudo node dist/server.js 80",
+    "start": "./cli.sh build && node dist/server.js 1337",
+    "setup": "./cli.sh install",
+    "clean": "./cli.sh clean"
   },
   "dependencies": {
-    "express": "~4.0.0",
-    "jade": "^1.9.2",
-    "morgan": "~1.0.0",
-    "serve-favicon": "^2.2.0"
+    "magic-loops": "git://github.com/express-magic/magic-loops",
+    "magic-types": "git://github.com/express-magic/magic-types",
+    "page": "^1.6.1"
   },
   "repository": {
     "type": "git",
@@ -23,8 +25,7 @@
     "metalab",
     "screeninvader",
     "slack",
-    "praise",
-    "bob"
+    "praise bob"
   ],
   "bugs": {
     "url": "https://github.com/screeninvader/slackomatic-frontend/issues"
@@ -33,8 +34,11 @@
     "babel": "^4.7.12",
     "babelify": "^5.0.4",
     "browserify": "^9.0.3",
+    "html-inline": "^1.1.1",
+    "jade": "^1.9.2",
     "nib": "^1.1.0",
     "stylus": "^0.50.0",
+    "uglify": "^0.1.3",
     "webfont-dl": "^0.1.2"
   },
   "contributors": [
