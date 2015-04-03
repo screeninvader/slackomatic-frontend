@@ -2,6 +2,11 @@ CACHE MANIFEST
 # |date|
 
 CACHE:
+/
 index.html
+
+FALLBACK:
+/ /index.html
+
 
 #all hail eris!
