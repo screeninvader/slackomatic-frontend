@@ -1,39 +1,41 @@
 import {each} from 'magic-loops';
-import {hasStore} from 'magic-client-store';
-import dom from 'magic-client-dom';
-import is from 'is';
+import {isF, isO} from 'magic-types';
 
-export function initUi() {
-  var sections = document.querySelectorAll('.wrapper > section')
-    , hasStore = hasLocalStorage()
-  ;
+class UI {
+  constructor() {
+    var sections = document.querySelectorAll('.content > section');
+    each(sections, (section) => {
+      if ( isF(section.querySelector) ) {
+        var header    = section.querySelector('header')
+          , sectionId = section.getAttribute('id')
+        ;
 
-  each(sections, (section) => {
-    if ( is.fn(section.querySelector) ) {
-      var header    = section.querySelector('header')
-        , sectionId = section.getAttribute('id')
-      ;
+        section.classList.add('hidden');
 
-      if ( hasStore && ! localStorage.getItem(sectionId) ) {
-        dom.class.add(section, 'hidden');
+        if ( isF(header.addEventListener) ) {
+          header.addEventListener('click', this.clickEventListener, false);
+        }
       }
+    });
+  }
 
-      if ( is.fn(header.addEventListener) ) {
-        header.addEventListener('click', clickEventListener, false);
-      }
-    }
-  });
-}
-
-function clickEventListener(evt) {
-  var section = dom.parentNode(evt.target, 'section');
-
-  if ( hasLocalStorage && isObj(section.onclick) ) {
-    let settingName = section.getAttribute('id')
-      , isToggled = dom.class.toggle(section, 'hidden')
-    ;
-    if ( settingName ) {
-      localStorage.set('ui-settings-' + settingName, isToggled);
+  clickEventListener(evt) {
+    if ( window.innerWidth < 600 ) {
+      let par = findParent(evt.target, 'section');
+      par.classList.toggle('hidden');
     }
   }
 }
+
+function findParent(ele, tagName=false) {
+  var par = ele.parentNode;
+  if ( ! par || ! tagName  ) {
+    return false;
+  }
+  if ( par.tagName.toLowerCase() === tagName.toLowerCase() ) {
+    return par;
+  }
+  return findParent(par, tagName);
+}
+
+export default new UI();

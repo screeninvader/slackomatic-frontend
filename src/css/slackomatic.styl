@@ -1,5 +1,3 @@
-global-reset()
-
 no-child-borders()
   &:first-child
     border-radius 13px
@@ -24,6 +22,9 @@ child-borders()
     border-left-width 1.5px
     border-radius 0 13px 13px 0
 
+
+global-reset()
+
 @import 'include/font'
 @import 'include/sanity'
 
@@ -32,19 +33,8 @@ body
   color #FFFFFF
   font-size 20px
 
-.wrapper
-  background-color #333
-  border 3px solid 
-  border-color #fff
-  border-radius 15px 
-  margin 0 auto
-  padding 0
-  text-align center
-  width 90%
-
-  > section
-    display inline-block
-    width 100%
+body, input
+  font-family 'Ubuntu Mono', monospace, sans-serif !important
 
 a,
 a:visited 
@@ -53,15 +43,18 @@ a:visited
 h2
   border-top 2px solid #fff
   font-size 1.2em
-  font-weight b.3em 0 0old
   padding .2em 0 0
   text-align center
+  margin 0 0 .5em
 
-  span
-    line-height 1em
-    &:first-child
+
+header.section
+  h2
+    &:before
+      content '\25B6'
       float left
-    &:last-child
+    &:after
+      content '\25C0'
       float right
 
 body
@@ -94,9 +87,32 @@ body
     border-bottom 2px solid #080
 
 .wrapper
-  section:first-child
-    h2
-      border-top-width 0
+  margin 0 1em
+
+  .content
+    background-color #333
+    border 3px solid 
+    border-color #fff
+    border-radius 15px 
+    margin 0 auto
+    padding 0
+    text-align center
+    width 90%
+    display none
+
+    &.active
+      display block
+      opacity 1
+      height auto
+      width auto
+
+    > section
+      display inline-block
+      width 100%
+
+    section:first-child
+      h2
+        border-top-width 0
 
 h3
   margin .5em 0 0
@@ -113,10 +129,33 @@ section.sub
 
 header.main
   text-align center
-  width 100%
+  width 90%
+  margin 0 auto
 
   img
     max-width 100%
+
+  .sub
+    font-size .5em
+    margin -24px 0 0 1%
+    position absolute
+    width 88%
+    text-align left
+
+    li
+      left 0
+      opacity 0
+      position absolute
+      transition opacity .5s
+      color #69b4da
+
+      &.visible
+        opacity 1
+        transition opacity .2s
+
+      span.o
+        color #fd339b
+
 
 div.description
   clear both
@@ -127,6 +166,9 @@ footer.main
   width 100%
   text-align center
 
+  nav
+    display inline-block
+
   li
     display block
     padding .5em
@@ -135,17 +177,17 @@ footer.main
     a
       color #fff
 
-
-
 div.ui
-  padding .5em
+  padding 0 .5em .5em
+  display inline-block
+  width 100%
+
   input
     background-color rgb(200,200,200)
     border 3px solid #fff
     border-radius 13px
     display block
     font-size 1em
-    font-weight bold
     margin .2em 0
     padding .2em
     white-space pre-line
@@ -217,37 +259,44 @@ div.ui
       width 100%
 
 section#system
-  section.sub.games
-    float left
-    width 30%
-  section.sub.local
-    float right
-    width 70%
+  section.sub
+    &.entertainment
+      div.ui
+        input
+          width 100%
+          no-child-borders()
+
+    &.sub.games
+      float left
+      width 30%
+    &.sub.local
+      float right
+      width 70%
+
+.troubleshooting
+  p
+    margin 0 0 1em
 
 @media all and (max-width 600px)
   body
     .wrapper 
-      > section
-        max-height 100%
-        transition all .5s
-
-        div
-          overflow hidden
+      .content
+        > section
           max-height 100%
-          opacity 1
-          transition all .5s
 
-        &.hidden
-          cursor pointer
-          max-height 40px
+          div
+            overflow hidden
+            max-height 100%
+            opacity 1
 
-          div,
-          section.sub,
-          section.sub h3
-            max-height 0
-            opacity 0
-            padding 0
-            margin 0
+          &.hidden
+            cursor pointer
+            display block
+
+            div,
+            section.sub,
+            section.sub h3
+              display none
 
 
 @media all and (min-width 600px)
@@ -279,7 +328,7 @@ section#system
           &.yamaha,
           &.metacade,
           &.lamp1
-            display inline-block
+            float left
             width 33.333%
 
     footer.main
@@ -352,10 +401,28 @@ section#system
       section.volume
         float left
         width 30%
-      section#lighting
-        float right
-        width 70%
 
+      section#lighting
+        display inline-block
+        width 100%
+
+      section#nec section.sub
+        width 50%
+        float left
+
+      section#yamaha
+        section.sub
+          width 50%
+          float left
+
+      section#source 
+        div.ui
+          input
+            &:first-child:nth-last-child(6), 
+            &:first-child:nth-last-child(6) ~ input
+              width 16.667%
+              float left
+              child-borders()
 
 @media all and (min-width 900px)
   body
@@ -408,3 +475,39 @@ section#system
 
       section#lighting
         width 40%
+
+      section#powerSaving
+        display inline-block
+        width 100%
+
+      section#projector 
+        width 50%
+        float left
+
+        section.sub
+          width 33%
+          float left
+
+      section#input
+        width 50%
+        float right
+        border-left 3px solid #fff
+
+        h2
+          border-top 0 none
+
+        div.ui
+          margin 2em 0 0
+
+      section#nec
+        section.sub
+          width 25%
+          float left
+
+          &.aspect
+            width 50%
+
+      section#source
+        section.sub
+          width 33%
+          float left

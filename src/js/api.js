@@ -1,39 +1,42 @@
 import {each} from 'magic-loops';
-import {frameGet} from 'magic-client-http';
-import is from 'is';
+import {isF} from 'magic-types';
 
-var rootUrl = '/slackomatic/';
+class Api {
+  constructor() {
+    this.rootUrl = 'http://10.20.30.90:8080/slackomatic/';
 
-//add eventlisteners to all inputs
-export function initApi() {
-  var clickInputs = document.body.querySelectorAll('input[data-command]');
+    //add eventlisteners to all inputs
+    var clickInputs = document.body.querySelectorAll('input[data-command]');
+    each(clickInputs, (input) => {
+      if ( isF(input.addEventListener) ) {
+        input.addEventListener( 'click', this.clickEventListener.bind(this), false );
+      }
+    });
+    //httpGet request /slackomatic/room/lounge/powersaving/killswitch/reset 
+    this.frameGet(this.rootUrl + 'rooms/lounge/powersaving/killswitch/reset');
+  }
 
-  each(clickInputs, (input) => {
-    if ( is.fn(input.addEventListener) ) {
-      input.addEventListener( 'click', clickEventListener, false );
+  clickEventListener(evt) {
+    if ( evt.target || isF(evt.target.getAttribute === 'function') ) {
+      let command = evt.target.getAttribute('data-command')
+        , url = this.rootUrl + command
+      ;
+      this.frameGet(url);
     }
-  });
-  //httpGet request /slackomatic/room/lounge/powersaving/killswitch/reset 
-  frameGet(getUrl('room/lounge/', 'powersaving/killswitch/reset'));
+  }
+
+  frameGet(url) {
+    var frame = document.createElement('iframe');
+
+    frame.classList.add('hidden');
+    frame.src = url;
+    frame.addEventListener('load', () => {
+      console.log(`iframe http request loaded with url: ${url}`);
+      frame.parentNode.removeChild(frame);
+    });
+
+    document.body.appendChild(frame);
+  }
 }
 
-function clickEventListener(evt) {
-  if ( evt.target || is.fn(evt.target.getAttribute === 'function') ) {
-    let command = evt.target.getAttribute('data-command')
-      , path = evt.target.getAttribute('data-path')
-      , url = getUrl(command, path)
-    ;
-    frameGet(url);
-  }
-}
-
-function getUrl(command = false, path = false) {
-  var url = rootUrl;
-  if ( path ) {
-    url += path;
-  }
-  if ( command ) {
-    url += command;
-  }
-  return url;
-}
+export default new Api();

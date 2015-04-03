@@ -1,5 +1,4 @@
-import {initApi} from './api';
-initApi();
-
-import {initUi} from './ui';
-initUi();
+import './api';
+import './ui';
+import './router';
+import './subheader';
