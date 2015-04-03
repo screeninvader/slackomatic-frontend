@@ -9,7 +9,8 @@
     "prod": "./cli.sh build && sudo node dist/server.js 80",
     "start": "./cli.sh build && node dist/server.js 1337",
     "setup": "./cli.sh install",
-    "clean": "./cli.sh clean"
+    "clean": "./cli.sh clean",
+    "upload": "./cli.sh upload"
   },
   "dependencies": {
     "magic-loops": "git://github.com/express-magic/magic-loops",
