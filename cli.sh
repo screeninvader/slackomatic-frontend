@@ -2,7 +2,6 @@
 
 set -eu
 
-
 PATH=$(pwd)/node_modules/.bin/:$PATH
 
 DIST_DIR=dist/
@@ -20,7 +19,7 @@ function install() {
   npm install
   
   echo 'install a google webfont for local use and serving'
-  ./node_modules/.bin/webfont-dl \
+  webfont-dl \
     https://fonts.googleapis.com/css?family=Ubuntu+Mono:400 \
     --font-out=src/font \
     --out src/css/include/font.styl \
@@ -43,9 +42,10 @@ function build() {
 
   echo "copy static files to dist"
   cp -rf \
-    ${SRC_DIR}img/ ${SRC_DIR}${APPCACHE_FILE} ${SRC_DIR}favicon.ico \
+    ${SRC_DIR}img/ ${SRC_DIR}${APPCACHE_FILE} ${SRC_DIR}favicon.ico ${SRC_DIR}install-node-raspbian.sh \
     ${DIST_DIR} \
   ;
+  chmod +x ${SRC_DIR}install-node-raspbian.sh
 
   echo "sed ${APPCACHE_FILE} with current timestamp for cache reload"
   CUR_TIMESTAMP=`date +%s`
@@ -94,12 +94,6 @@ function build() {
     server.js \
     --out-file dist/server.js \
   ;
-
-  echo 'copy node-raspbian install, needed for updates and first install'
-  cp bin/install-node-raspbian dist/install-node-raspbian
-
-  echo 'make sure dist/bin/install-node-raspbian is executable'
-  chmod +x dist/install-node-raspbian
 }
 
 function serve() {
