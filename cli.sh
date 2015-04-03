@@ -42,10 +42,15 @@ function build() {
 
   echo "copy static files to dist"
   cp -rf \
-    ${SRC_DIR}img/ ${SRC_DIR}${APPCACHE_FILE} ${SRC_DIR}favicon.ico ${SRC_DIR}install-node-raspbian.sh \
+    ${SRC_DIR}img/ \
+    ${SRC_DIR}${APPCACHE_FILE} \
+    ${SRC_DIR}favicon.ico \
+    ${SRC_DIR}install-node-raspbian.sh \
+    ${SRC_DIR}run.sh \
     ${DIST_DIR} \
   ;
   chmod +x ${SRC_DIR}install-node-raspbian.sh
+  chmod +x ${SRC_DIR}run.sh
 
   echo "sed ${APPCACHE_FILE} with current timestamp for cache reload"
   CUR_TIMESTAMP=`date +%s`
