@@ -1,9 +1,7 @@
 #~/bin/bash
-#move to app root directory
-cd /home/pi/nodejs;
 
 #creates dist directory and prebuilds app there
-./bin/build
+./bin/build-prod
 
 #removes all files from the source directory (frontend goes down at this point)
 ssh root@10.20.30.90 'rm -rf /home/pi/nodejs/* -r'

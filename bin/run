@@ -1,6 +1,0 @@
-#!/bin/bash
-#move to app root directory
-cd /home/pi/nodejs/;
-#execute node app in dist/ directory, development
-sudo node ./dist/slack.js
-

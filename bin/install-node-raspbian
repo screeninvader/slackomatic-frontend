@@ -1,9 +1,6 @@
 #!/bin/bash
 #this file installs the latest nodejs build for raspbian
-#gets copied to the dist/bin directory by bin/build
-
-#move to app root directory
-cd /home/pi/nodejs/;
+#gets copied to the dist/bin directory by cli.sh build
 
 #install node for raspbian
 wget -N http://node-arm.herokuapp.com/node_latest_armhf.deb
