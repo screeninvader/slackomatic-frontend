@@ -1,12 +1,15 @@
 slackomatic frontend
 ====
 
-######!!! Assumes that the app root is in /home/pi/nodejs!!!
+######!!! Assumes that the production app root is in /home/pi/nodejs!!!
 ######the git clone instructions below will fail if this directory does not exist
 
 #What does this app do?
 This nodejs application serves the frontend for the slackomatic api.
-a bunch of html, css, javascript and image files served using expressjs
+one index.html, a slackomatic.appcache file, the favicon.ico and two images for
+the shutdown warning and the cleanup warning.
+
+The AppCache allows this site to work even if the server goes down.
 
 ```bash
 #clone git repository
@@ -16,37 +19,28 @@ cd /home/pi/nodejs
 
 ```bash
 #INSTALL: used once before building for the very first time:
-cd /home/pi/nodejs/
-./bin/install
+npm run setup 
+or
+./cli.sh install
 ```
 
 ```bash
 #BUILD: adds local changes to dist directory
-cd /home/pi/nodejs/
-./bin/build
+./cli.sh build
 ```
 
 ```bash
-#BUILD && RUN: builds local deps to dist and runs dist/slack.js
-cd /home/pi/nodejs/;
-npm start 
-```
-
-```bash
-#RUN
-#bin/run the compiled version of the app from dist without compilation
-cd /home/pi/nodejs/;
-bin/run
+#BUILD && RUN DEV ENV: builds local deps to dist and runs dist/server.js
+npm start
 ```
 
 ```bash
 #UPLOAD: push to production (when slackomatic is at 10.20.30.90)
-cd /home/pi/nodejs/;
-bin/upload
+npm run upload
 ```
 
 ```bash
 #To start on boot in /etc/inittab on raspbian 
 #with the source in /home/pi/nodejs:
-/home/pi/nodejs/slack.js
+/home/pi/nodejs/run.sh
 ```
