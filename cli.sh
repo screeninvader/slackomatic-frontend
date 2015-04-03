@@ -96,11 +96,6 @@ function build() {
   ;
 }
 
-function serve() {
-  echo 'starting ./dist/server.js'
-  node ./dist/server.js
-}
-
 function upload() {
   echo 'create dist directory and prebuild app there'
   build;
@@ -116,7 +111,9 @@ function upload() {
   echo ''
 }
 
-if [ ! -z $1 ]
+if [ $1 ]
 then
-  $1
+  function=$1
+  shift
+  $function $@
 fi
