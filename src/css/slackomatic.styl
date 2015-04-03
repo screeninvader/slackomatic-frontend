@@ -132,29 +132,34 @@ header.main
   width 90%
   margin 0 auto
 
-  img
-    max-width 100%
+  div:first-child
+    display inline-block
+    position relative
 
-  .sub
-    font-size .5em
-    margin -24px 0 0 1%
-    position absolute
-    width 88%
-    text-align left
+    img
+      max-width 100%
 
-    li
-      left 0
-      opacity 0
+    .sub
+      font-size .9em
+      margin -24px 0 0
       position absolute
-      transition opacity .5s
-      color #69b4da
+      width 100%
 
-      &.visible
-        opacity 1
-        transition opacity .2s
+      li
+        left 0
+        opacity 0
+        position absolute
+        transition opacity .1s
+        color #69b4da
+        width 100%
+        text-align center
 
-      span.o
-        color #fd339b
+        &.visible
+          opacity 1
+          transition opacity .5s
+
+        span.o
+          color #fd339b
 
 
 div.description
@@ -257,6 +262,9 @@ div.ui
     &:first-child:nth-last-child(10),
     &:first-child:nth-last-child(10) ~ input 
       width 100%
+
+.hidden
+  display none
 
 section#system
   section.sub
