@@ -53,8 +53,9 @@ function build() {
   chmod +x ${SRC_DIR}run.sh
 
   echo "sed ${APPCACHE_FILE} with current timestamp for cache reload"
-  CUR_TIMESTAMP=`date +%s`
-  sed -i -e "s/|date|/${CUR_TIMESTAMP}/g" ${DIST_DIR}${APPCACHE_FILE}
+  CUR_DATE=`date --utc --rfc-3339=seconds`
+  echo "${CUR_DATE}"
+  sed -i -e "s/|date|/${CUR_DATE}/g" ${DIST_DIR}${APPCACHE_FILE}
 
   echo "compile client side js"
   browserify \
