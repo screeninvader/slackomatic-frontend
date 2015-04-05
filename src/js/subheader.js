@@ -10,33 +10,12 @@ var hack = document.documentElement.doScroll
   , intervalRunning = false;
 ;
 
-if ( window.innerWidth >= 320 ) {
-  if ( ! loaded ) {
-    document.addEventListener('DOMContentLoaded', addInterval);
-  } else {
-    addInterval();
-  }
-}
-
-function addInterval() {
-  if ( intervalRunning === false ) {
-    intervalRunning = true;
-    interval = setInterval( showHide, animDuration );
-  }
-}
-
-function removeInterval() {
-   if ( intervalRunning ) {
-    intervalRunning = false;
-    clearInterval(interval);
-  }
-}
-
 function setup() {
   var lis = containerDiv.querySelectorAll('li')
     , replacers = [ 
-        { val: 'o', regex: /o/g } 
+        { val: 'o', regex: /o/g }
       , { val: 'O', regex: /O/g }
+      , { val: '0', regex: /0/g }
       , { val: '!', regex: /\!/g }
       , { val: '?', regex: /\?/g }
     ]
@@ -55,8 +34,32 @@ function setup() {
       li.innerHTML = html;
     }
   });
+
+  if ( window.innerWidth >= 320 ) {
+    if ( ! loaded ) {
+      document.addEventListener('DOMContentLoaded', addInterval);
+    } else {
+      addInterval();
+    }
+  }
 }
+
 setup();
+
+function addInterval() {
+  if ( intervalRunning === false ) {
+    intervalRunning = true;
+    interval = setInterval( showHide, animDuration );
+  }
+}
+
+function removeInterval() {
+   if ( intervalRunning ) {
+    intervalRunning = false;
+    clearInterval(interval);
+  }
+}
+
 
 function showHide() {
   if ( window.innerWidth >= 320 ) {
