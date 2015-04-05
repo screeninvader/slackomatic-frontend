@@ -12,23 +12,15 @@ var hack = document.documentElement.doScroll
 
 function setup() {
   var lis = containerDiv.querySelectorAll('li')
-    , replacers = [ 
-        { val: 'o', regex: /o/g }
-      , { val: 'O', regex: /O/g }
-      , { val: '0', regex: /0/g }
-      , { val: '!', regex: /\!/g }
-      , { val: '?', regex: /\?/g }
-    ]
+    , regex = /[oO0\!\?]/g
   ;
 
   each(lis, (li) => {
     if ( li.innerHTML ) {
       var html = li.innerHTML;
       if ( html ) {
-        each(replacers, (char) => {
-          html = html.replace(
-            char.regex, `<span class="pinkie">${char.val}</span>`
-          );
+        html = html.replace( regex, (s) => {
+          return `<span class="pinkie">${s}</span>`;
         });
       }
       li.innerHTML = html;
