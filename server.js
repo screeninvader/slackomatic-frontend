@@ -33,9 +33,14 @@ var port = process.argv[2] || 1337
 var server = createServer( (req, res) => {
   var data = files[req.url];
 
+  if ( req.url === '/killkillkill' ) {
+    return process.exit();
+  }
+
   if ( pages.indexOf(req.url) > -1 && ! data ) {
     data = files['/'];
   }
+
   if ( data && data.data && data.mime ) {
     res.writeHead(200, {'Content-Type': data.mime});
     res.end(data.data);
