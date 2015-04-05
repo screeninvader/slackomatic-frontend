@@ -53,9 +53,9 @@ function build() {
   chmod +x ${SRC_DIR}run.sh
 
   echo "sed ${APPCACHE_FILE} with current timestamp for cache reload"
-  CUR_DATE=`date --utc --rfc-3339=seconds`
-  echo "${CUR_DATE}"
-  sed -i -e "s/|date|/${CUR_DATE}/g" ${DIST_DIR}${APPCACHE_FILE}
+  CUR_DATE=$(date --utc --rfc-3339=seconds)
+  echo $CUR_DATE
+  sed -i -e "s/|date|/$CUR_DATE/g" ${DIST_DIR}${APPCACHE_FILE}
 
   echo "compile client side js"
   browserify \
@@ -76,11 +76,6 @@ function build() {
     --out ${DIST_DIR}css/slackomatic.css \
     --import node_modules/nib \
   ;
-
-  echo "copy ${APPCACHE_FILE}"
-  cp ./${SRC_DIR}${APPCACHE_FILE} ${DIST_DIR} -f
-  current_timestamp=`date +%s`
-  sed -i -e "s/|date|/${current_timestamp}/g" ${DIST_DIR}${APPCACHE_FILE}
 
   echo "compile html files"
   jade \
