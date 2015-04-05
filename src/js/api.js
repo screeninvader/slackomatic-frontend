@@ -1,5 +1,6 @@
 import {each} from 'magic-loops';
 import {isF} from 'magic-types';
+import {frameGetRequest as frameGet} from './frameGetRequest';
 
 class Api {
   constructor() {
@@ -13,7 +14,7 @@ class Api {
       }
     });
     //httpGet request /slackomatic/room/lounge/powersaving/killswitch/reset 
-    this.frameGet(this.rootUrl + 'rooms/lounge/powersaving/killswitch/reset');
+    frameGet(this.rootUrl + 'rooms/lounge/powersaving/killswitch/reset');
   }
 
   clickEventListener(evt) {
@@ -21,21 +22,8 @@ class Api {
       let command = evt.target.getAttribute('data-command')
         , url = this.rootUrl + command
       ;
-      this.frameGet(url);
+      frameGet(url);
     }
-  }
-
-  frameGet(url) {
-    var frame = document.createElement('iframe');
-
-    frame.classList.add('hidden');
-    frame.src = url;
-    frame.addEventListener('load', () => {
-      console.log(`iframe http request loaded with url: ${url}`);
-      frame.parentNode.removeChild(frame);
-    });
-
-    document.body.appendChild(frame);
   }
 }
 
