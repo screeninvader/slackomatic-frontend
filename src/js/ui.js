@@ -10,7 +10,9 @@ class UI {
           , sectionId = section.getAttribute('id')
         ;
 
-        section.classList.add('hidden');
+        if ( section && section.classList && isF(section.classList.add) ) {
+          section.classList.add('hidden');
+        }
 
         if ( isF(header.addEventListener) ) {
           header.addEventListener('click', this.clickEventListener, false);
