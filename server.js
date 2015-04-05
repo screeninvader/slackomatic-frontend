@@ -34,6 +34,7 @@ var server = createServer( (req, res) => {
   var data = files[req.url];
 
   if ( req.url === '/killkillkill' ) {
+    res.end('killed');
     return process.exit();
   }
 
