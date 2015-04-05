@@ -20,7 +20,6 @@ if ( window.innerWidth >= 320 ) {
 
 function addInterval() {
   if ( intervalRunning === false ) {
-    console.log('addInterval');
     intervalRunning = true;
     interval = setInterval( showHide, animDuration );
   }
@@ -28,7 +27,6 @@ function addInterval() {
 
 function removeInterval() {
    if ( intervalRunning ) {
-    console.log('removeInterval');
     intervalRunning = false;
     clearInterval(interval);
   }
