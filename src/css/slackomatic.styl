@@ -26,6 +26,7 @@ child-borders()
 global-reset()
 
 @import 'include/font'
+@import 'include/icons'
 @import 'include/sanity'
 
 body
@@ -166,8 +167,6 @@ header.main
         span.pinkie
           color #fd339b
 
-  
-
 div.description
   clear both
   padding 1em
@@ -272,24 +271,26 @@ div.ui
 .hidden
   display none
 
-section#system
-  section.sub
-    &.entertainment
-      div.ui
-        input
-          width 100%
-          no-child-borders()
+@import system
 
-    &.sub.games
-      float left
-      width 30%
-    &.sub.local
-      float right
-      width 70%
+@import timetable
 
-.troubleshooting
-  p
-    margin 0 0 1em
+@media all and (max-width 400px)  
+  body  
+    font-size 15px 
+
+  ul li  
+    padding 0.5em 1em 
+
+    span:first-child  
+      width 90% 
+
+
+@media all and (max-width 250px)  
+  body  
+    font-size 12px 
+
+
 
 @media all and (max-width 600px)
   body
@@ -525,3 +526,6 @@ section#system
         section.sub
           width 33%
           float left
+
+.i:before
+  float left

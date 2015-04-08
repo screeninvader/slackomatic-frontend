@@ -1,0 +1,42 @@
+div.timetable.content
+  max-width 800px
+
+  h1
+    font-size 3em
+    line-height 1
+    text-shadow 0 3px 0 rgba(0,0,0,0.1)
+
+  ul
+    margin 1em 0 0.75em
+    padding 1em
+
+    li
+      padding 0.5em
+      margin 0 0 0.4em
+      display inline-block
+
+      &.betriebsschluss
+        text-align center
+        background-color #A51717
+
+    &#departures
+      display inline-block
+
+      li
+        display inline-block
+        width 100%
+
+        &.visible
+          display inline-block
+
+        span
+          /* has to be before first-child! */
+          &:last-child  
+            float right
+          /* has to be after last-child! */
+          &:first-child  
+            float left
+
+  #selectors
+    li
+      cursor pointer

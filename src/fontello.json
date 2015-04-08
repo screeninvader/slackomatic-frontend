@@ -1,0 +1,28 @@
+{
+  "name": "slackomatic",
+  "css_prefix_text": "i-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "88a1241bcbe45c8e9616fd34d0f68a55",
+      "css": "sub",
+      "code": 59392,
+      "src": "maki"
+    },
+    {
+      "uid": "3fcff44d055ea3e68ea50aaa7d91947f",
+      "css": "tram",
+      "code": 59393,
+      "src": "maki"
+    },
+    {
+      "uid": "2b39f74a074e338a67270567e95142cb",
+      "css": "bus",
+      "code": 59394,
+      "src": "maki"
+    }
+  ]
+}
