@@ -3,32 +3,20 @@
 import {createServer} from 'http';
 import {join} from 'path';
 import {readFileSync as read} from 'fs';
+import config from './config.js';
+import {each} from 'magic-loops';
 
-var port = process.argv[2] || 1337
-  , pages = ['/', '/index.html', '/advanced', '/troubleshooting']
-  , files = {
-      '/': {
-          mime: 'text/html'
-        , data: read( join(__dirname, 'index.html') )
-      }
-      , '/slackomatic.appcache': {
-          mime: 'text/plain'
-        , data: read( join(__dirname, 'slackomatic.appcache') )
-      }
-      , '/favicon.ico': {
-          mime: 'image/x-icon'
-        , data: read( join(__dirname, 'favicon.ico') )
-      }
-      , '/img/cleanup_reminder.jpg': {
-          mime: 'image/jpg'
-        , data: read( join(__dirname, 'img', 'cleanup_reminder.jpg') )
-      }
-      , '/img/power_down_warning.png': {
-          mime: 'image/png'
-        , data: read( join(__dirname, 'img', 'power_down_warning.png') )
-      }
-    }
+var port = process.argv[2] || config.port || 1337
+  , pages = config.pages || {'/': {mime: 'text/html', name:'index.html'}}
+  , files = {}
 ;
+
+each(config.files, (file, key) => {
+  files[key] = {
+      mime: file.mime
+    , data: read( join(__dirname, file.name) )
+  };
+});
 
 var server = createServer( (req, res) => {
   var data = files[req.url];
