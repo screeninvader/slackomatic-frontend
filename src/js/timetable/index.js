@@ -72,8 +72,8 @@ class Timetable {
     each(lines, (line, key) => {
       if ( line && line.countdown ) {
         times[line.countdown] = [];
+        times[line.countdown].push(line);
       }
-      times[line.countdown].push(line);
     });
 
     return times;
@@ -107,17 +107,18 @@ class Timetable {
 
   rerender() {
     var targetUl = document.querySelector('#departures')
-      , shownDepartures = []
-      , departures = this.sortByDepartTime(this.departures);
+      , departures = this.sortByDepartTime(this.departures)
+      , shownLineNum = 0
     ;
     targetUl.innerHTML = '';
-    var shownLineNum = 0;
     each(departures, (depByMinute, minute) => {
+      console.log('minute', minute);
       each(depByMinute, (dep, depKey) => {
         var linie = this.showDeparture(dep)
           , isShown = this.shownLines.indexOf(linie) > -1
         ;
         if ( isShown ) {
+          console.log(isShown, dep);
           shownLineNum += 1;
         }
       });
@@ -125,6 +126,7 @@ class Timetable {
     if ( shownLineNum === 0 ) {
       this.betriebsschluss(targetUl);
     }
+    this.departures = departures;
   }
 
   betriebsschluss(target) {
