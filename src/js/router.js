@@ -1,12 +1,13 @@
 import page from 'page';
 import {each} from 'magic-loops';
 import {isF} from 'magic-types';
+import config from '../../config.js';
 
 class Router {
   constructor() {
     page.base('/');
     page('/', this.render);
-    page(':page', this.render);
+    page(':page', this.render)
     page('*', this.redirect);
     page();
   }

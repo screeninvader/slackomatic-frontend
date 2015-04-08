@@ -6,13 +6,15 @@
   "author": "Metalab <metalab@lists.metalab.at>",
   "license": "Probably will be AGPL.",
   "scripts": {
-    "prod": "./cli.sh build && sudo node dist/server.js 80",
-    "start": "./cli.sh build && node dist/server.js 1337",
+    "prod": "./cli.sh build && ./cli.sh run 80",
+    "start": "./cli.sh build && ./cli.sh run 1337",
     "setup": "./cli.sh install",
     "clean": "./cli.sh clean",
     "upload": "./cli.sh upload"
   },
   "dependencies": {
+    "localforage": "^1.2.2",
+    "magic-client-store": "git://github.com/express-magic/magic-client-store",
     "magic-loops": "git://github.com/express-magic/magic-loops",
     "magic-types": "git://github.com/express-magic/magic-types",
     "page": "^1.6.1"
@@ -38,6 +40,7 @@
     "html-inline": "^1.1.1",
     "jade": "^1.9.2",
     "nib": "^1.1.0",
+    "nodemon": "^1.3.7",
     "stylus": "^0.50.0",
     "uglify": "^0.1.3",
     "webfont-dl": "^0.1.2"

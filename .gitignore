@@ -3,4 +3,7 @@ npm-debug.log
 babel.json
 dist
 src/css/include/font.styl
+src/css/include/icons.styl
 src/font
+watchify.log
+.tmp

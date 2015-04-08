@@ -1,6 +1,6 @@
 import {each} from 'magic-loops';
 import {isF} from 'magic-types';
-import {frameGetRequest as frameGet} from './frameGetRequest';
+import {frameGetRequest} from './frameGetRequest';
 
 class Api {
   constructor() {
@@ -13,8 +13,6 @@ class Api {
         input.addEventListener( 'click', this.clickEventListener.bind(this), false );
       }
     });
-    //httpGet request /slackomatic/room/lounge/powersaving/killswitch/reset 
-    frameGet(this.rootUrl + 'rooms/lounge/powersaving/killswitch/reset');
   }
 
   clickEventListener(evt) {
@@ -22,7 +20,7 @@ class Api {
       let command = evt.target.getAttribute('data-command')
         , url = this.rootUrl + command
       ;
-      frameGet(url);
+      frameGetRequest(url);
     }
   }
 }

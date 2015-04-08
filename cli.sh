@@ -7,6 +7,8 @@ PATH=$(pwd)/node_modules/.bin/:$PATH
 DIST_DIR=dist/
 SRC_DIR=src/
 APPCACHE_FILE=slackomatic.appcache
+CONFIG_FILE=config.js
+TMP_DIR=.tmp/
 
 function clean() {
   echo 'clean dist/'
@@ -15,9 +17,11 @@ function clean() {
 }
 
 function install() {
+  mkdir -p dist/
+
   echo 'installing npm dependencies'
   npm install
-  
+
   echo 'install a google webfont for local use and serving'
   webfont-dl \
     https://fonts.googleapis.com/css?family=Ubuntu+Mono:400 \
@@ -29,9 +33,28 @@ function install() {
     --ttf omit \
   ;
 
+  echo 'installing fontello icons'
+  mkdir -p ${TMP_DIR}
+  fontello-cli install \
+  --css ${TMP_DIR} \
+  --font ${TMP_DIR} \
+  --config ${SRC_DIR}fontello.json \
+  ;
+
+  mv ${TMP_DIR}slackomatic-embedded.css ${SRC_DIR}css/include/icons.styl
+
+  mv \
+    ${TMP_DIR}slackomatic.svg \
+    ${TMP_DIR}slackomatic.eot \
+    ${SRC_DIR}font/ \
+  ;
+
+  #~ rm -rf ${TMP_DIR}
+
+
   echo 'install app npm dependencies'
   cp package.json ${DIST_DIR}
-  cd ./${DIST_DIR}
+  cd ${DIST_DIR}
   npm install --production
   cd ../
 }
@@ -44,6 +67,7 @@ function build() {
   cp -rf \
     ${SRC_DIR}img/ \
     ${SRC_DIR}${APPCACHE_FILE} \
+    ${CONFIG_FILE} \
     ${SRC_DIR}favicon.ico \
     ${SRC_DIR}install-node-raspbian.sh \
     ${SRC_DIR}run.sh \
@@ -59,16 +83,17 @@ function build() {
 
   echo "compile client side js"
   browserify \
-    ${SRC_DIR}js/* \
+    ${SRC_DIR}js/index.js \
     --outfile ${DIST_DIR}js/slackomatic.js \
     -t babelify \
+    --source-maps-inline \
   ;
 
-  echo 'uglify javascript source'
-  uglify \
-    --source ${DIST_DIR}js/slackomatic.js \
-    --output ${DIST_DIR}js/slackomatic.js \
-  ;
+  #~ echo 'uglify javascript source'
+  #~ uglify \
+    #~ --source ${DIST_DIR}js/slackomatic.js \
+    #~ --output ${DIST_DIR}js/slackomatic.js \
+  #~ ;
 
   echo "compile css files"
   stylus \
@@ -110,6 +135,18 @@ function upload() {
   echo 'call killkillkill to kill the app and force respawn by inittab'
   curl http://10.20.30.90/killkillkill
   echo ''
+}
+
+function run() {
+  echo 'start watchify and push it to background'
+  watchify \
+    src/js/main.js -t babelify -o dist/js/bundle.js \
+    -- 1> ./watchify.log 2> ./watchify.log &
+
+  echo 'starting nodemon'
+  nodemon \
+    dist/server.js 1337 \
+  ;
 }
 
 if [ $1 ]
