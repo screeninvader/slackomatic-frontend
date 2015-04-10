@@ -35,9 +35,10 @@ module.exports = {
     }
   }
   , supportedLines: {
-      '13A': {type: 'bus',  color: '#5caed7'}
-    , '2':   {type: 'tram', color: '#e35885'}
-    , 'U2':  {type: 'sub',  color: '#8a5a83'}
-    , 'U3':  {type: 'sub',  color: '#f76205'}
+      '2':  {type: 'tram', color: '#e35885'}
+    , 'D':  {type: 'tram',  color: '#e35885'}
+    ,  '13A':{type: 'bus',  color: '#5caed7'}
+    , 'U2': {type: 'sub',  color: '#8a5a83'}
+    , 'U3': {type: 'sub',  color: '#f76205'}
   }
 };
