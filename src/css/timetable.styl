@@ -7,8 +7,8 @@ div.timetable.content
     text-shadow 0 3px 0 rgba(0,0,0,0.1)
 
   ul
-    margin 1em 0 0.75em
-    padding 1em
+    margin 0 0 0.75em
+    padding 0 1em
 
     li
       padding 0.5em
@@ -37,6 +37,17 @@ div.timetable.content
           &:first-child  
             float left
 
-  #selectors
-    li
-      cursor pointer
+    &#selectors
+      li
+        cursor pointer
+
+        .i-ok:before
+          color green
+        .i-cancel:before  
+          color red
+
+@media all and (max-width 500px)
+  div.timetable.content
+    ul#selectors
+      li
+        width 50%
