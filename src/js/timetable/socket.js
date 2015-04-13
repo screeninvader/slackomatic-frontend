@@ -31,7 +31,7 @@ export class Socket {
       }
 
       this.socket.onerror = function(evt) {
-        console.error('Socket Error: ' + evt);
+        console.error('Socket Error: ', evt);
       };
     }
   }
