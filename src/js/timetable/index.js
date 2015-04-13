@@ -15,12 +15,14 @@ class Timetable {
     };
 
     this.departures = [];
-    this.socket = new Socket(this);
 
     this.getLines( (err, lines) => {
       if ( err ) { throw new Error(err); }
 
+      this.shownLines = lines || [];
+
       this.menu = new Menu(this);
+      this.socket = new Socket(this);
       this.render();
     });
   }
@@ -47,7 +49,6 @@ class Timetable {
 
     forage.getItem('shownLines', (err, data) => {
       if ( err ) { throw Error(err); }
-      this.shownLines = data;
       cb(err, data);
     });
   }
@@ -103,7 +104,7 @@ class Timetable {
     dep.type = this.supportedLines[dep.linie].type;
     dep.color = this.supportedLines[dep.linie].color;
     if ( dep.towards || dep.countdown || dep.linie ) {
-      if ( this.shownLines.indexOf(dep.linie) === -1 ) {
+      if ( this.shownLines && this.shownLines.indexOf(dep.linie) === -1 ) {
         return false;
       }
 
