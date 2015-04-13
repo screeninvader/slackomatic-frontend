@@ -3,6 +3,8 @@ import {isF, isA, isD} from 'magic-types';
 import Store, {forage} from 'magic-client-store';
 import Socket from './socket';
 import config from '../../../config.js';
+import Menu from './menu';
+//~ import Departures from './departures';
 
 class Timetable {
   constructor() {
@@ -11,146 +13,27 @@ class Timetable {
     , 'U3': 'sub'
     , '2': 'tram'
     };
-    this.shownLines = [];
-
-    this.init();
 
     this.departures = [];
     this.socket = new Socket(this);
 
-  }
+    this.getLines( (err, lines) => {
+      if ( err ) { throw new Error(err); }
 
-  init() {
-    var selectorEle = document.querySelector('ul#selectors')
-      , lis = []
-    ;
-    this.addAllAndNoneBtns();
-
-    if ( selectorEle ) {
-      each(this.supportedLines, (linie, name) => {
-        var li = document.createElement('li')
-          , a  = document.createElement('a')
-        ;
-        li.className = `linie-${name} ${linie.type} i-${linie.type}`;
-        li.style['background-color'] = linie.color;
-        li.addEventListener('click', this.toggleSelectedLine.bind(this));
-        a.innerText = name;
-        a.className = 'i i-cancel';
-        li.setAttribute('data-line', name);
-        li.appendChild(a);
-
-        selectorEle.appendChild(li);
-      });
-    }
-    
-    this.setButtonClasses();
-  }
-
-  addAllAndNoneBtns() {
-    var targetDiv = document.querySelector('ul#selectors')
-      , allBtn  = document.createElement('li')
-      , noneBtn = document.createElement('li')
-      , allA   = document.createElement('a')
-      , noneA   = document.createElement('a')
-    ;
-    allA.innerHTML = 'ALL';
-    noneA.innerHTML = 'NONE';
-    allA.className = 'i-cancel';
-    noneA.className = 'i-cancel';
-    allBtn.appendChild(allA);
-    noneBtn.appendChild(noneA);
-
-    allBtn.addEventListener( 'click', this.showAllLines.bind(this), true );
-    noneBtn.addEventListener( 'click', this.showNoLines.bind(this), true );
-
-    targetDiv.appendChild(allBtn);
-    targetDiv.appendChild(noneBtn);
-  }
-
-  showAllLines(evt) {
-    var targetUl = document.querySelector('ul#selectors')
-      , btns     = targetUl.querySelectorAll('li a')
-      , newLines = []
-    ;
-
-    each(this.supportedLines, (line, name) => {
-      newLines.push(name);
+      this.menu = new Menu(this);
+      this.render();
     });
-    this.shownLines = newLines;
-    this.render();
   }
 
-  showNoLines(evt) {
-    var targetUl = document.querySelector('ul#selectors')
-      , btns     = targetUl.querySelectorAll('li a')
-    ;
-    this.shownLines = [];
-    this.render();
-  }
-
-  setButtonClasses() {
-    var ul   = document.querySelector('ul#selectors')
-      , btns = ul.querySelectorAll('li')
-      , as   = ul.querySelectorAll('li a')
-      , shownLines = this.shownLines
-      , all  = false
-      , none  = false
-    ;
-    console.log('shownLines', shownLines);
-    each(as, (a) => {
-      if ( count(shownLines) >= count(this.supportedLines) ) {
-        if ( a.innerText !== 'NONE' ) {
-          this.btnOn(a);
-        } else {
-          this.btnOff(a);
-        }
-      } else if ( count(shownLines) === 0) {
-        if ( a.innerText === 'NONE' ) {
-          this.btnOn(a);
-        } else {
-          this.btnOff(a);
-        }
-      } else if ( a.innerText ) {
-        if ( a.innerText === 'NONE' || a.innerText === 'ALL' ) {
-          this.btnOff(a);
-        } else if ( shownLines.indexOf(a.innerText) > -1 ) {
-          this.btnOn(a);
-        } else {
-          this.btnOff(a);
-        }
-      }
-    });
-    
-  }
-  btnOn(a) {
-    if ( a && a.classList && isF(a.classList.remove) ) {
-      a.classList.add('i-ok');
-      a.classList.remove('i-cancel');
-    }
-  }
-
-  btnOff(a) {
-    if ( a && a.classList && isF(a.classList.remove) ) {
-      a.classList.remove('i-ok');
-      a.classList.add('i-cancel');
-    }
-  }
-  btnToggle(a) {
-    if ( a && a.classList && isF(a.classList.toggle) ) {
-      a.classList.toggle('i-ok');
-      a.classList.toggle('i-cancel');
-    }
-  }
-  sortByDepartTime(lines) {
+  sortByDepartTime() {
     var times = [];
 
-    each(lines, (line, key) => {
+    each(this.departures, (line, key) => {
       if ( line && line.countdown ) {
         times[line.countdown] = [];
         times[line.countdown].push(line);
       }
     });
-
     return times;
   }
 
@@ -164,25 +47,25 @@ class Timetable {
 
     forage.getItem('shownLines', (err, data) => {
       if ( err ) { throw Error(err); }
+      this.shownLines = data;
       cb(err, data);
     });
   }
-  
+
   setLines(data, cb) {
     cb = cb || () => {};
-
     this.shownLines = data;
 
     forage.setItem('shownLines', data, (err) => {
       if ( err ) { throw Error(err); }
 
-      cb(err, data);
+      this.render();
     });
   }
 
   render() {
     var targetUl = document.querySelector('#departures')
-      , departures = this.sortByDepartTime(this.departures)
+      , departures = this.sortByDepartTime()
       , shownLineNum = 0
     ;
     targetUl.innerHTML = '';
@@ -199,9 +82,9 @@ class Timetable {
     if ( shownLineNum === 0 ) {
       this.betriebsschluss(targetUl);
     }
-    this.departures = departures;
+    //~ this.departures = departures;
 
-    this.setButtonClasses();
+    this.menu.render();
   }
 
   betriebsschluss(target) {
@@ -245,29 +128,6 @@ class Timetable {
       return dep.linie;
     }
     return false;
-  }
-
-  toggleSelectedLine(evt) {
-    var target = evt.target.parentNode.tagName === 'LI'
-                  ? evt.target.parentNode
-                  : evt.target
-      , shownLines = this.shownLines
-      , toggledLine = target.getAttribute('data-line')
-      , childA     = target.querySelector('a')
-      , newLines = []
-      , found = false
-    ;
-    each(shownLines, (line, key) => {
-      if ( line && line !== toggledLine ) {
-        newLines.push(line);
-      } else if ( line === toggledLine ) {
-        found = true;
-      }
-    });
-    if ( ! found ) {
-      newLines.push(toggledLine);
-    }
-    this.setLines(newLines, this.render.bind(this));
   }
 }
 
