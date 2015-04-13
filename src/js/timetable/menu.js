@@ -78,11 +78,11 @@ class Menu {
     each(this.timetable.supportedLines, (line, name) => {
       newLines.push(name);
     });
-    this.timetable.setLines(newLines, this.render.bind(this.timetable));
+    this.timetable.setLines(newLines, this.render.bind(this));
   }
 
   showNoLines(evt) {
-    this.timetable.setLines([], this.render.bind(this.timetable));
+    this.timetable.setLines([], this.render.bind(this));
   }
 
   toggleSelectedLine(evt) {
