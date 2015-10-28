@@ -1,24 +1,22 @@
 import {isF} from 'magic-types';
-import {each} from 'magic-loops';
 
-var hack = document.documentElement.doScroll
-  , loaded = (hack ? /^loaded|^c/ : /^loaded|^i|^c/).test(document.readyState)
-  , animDuration = 5000
-  , interval
-  , containerDiv = document.querySelector('header.main div.sub')
-  , visibleClassName = 'visible'
-  , intervalRunning = false;
-;
+const hack = document.documentElement.doScroll;
+const loaded = (hack ? /^loaded|^c/ : /^loaded|^i|^c/).test(document.readyState);
+const animDuration = 5000;
+let interval;
+const containerDiv = document.querySelector('header.main div.sub');
+const visibleClassName = 'visible';
+let intervalRunning = false;
 
 function setup() {
-  var lis = containerDiv.querySelectorAll('li')
-    , regex = /[oO0\!\?]/g
-  ;
+  const lis = containerDiv.querySelectorAll('li');
+  const regex = /[oO0\!\?]/g;
 
-  each(lis, (li) => {
-    if ( li.innerHTML ) {
-      var html = li.innerHTML;
-      if ( html ) {
+  Object.keys(lis).forEach(key => {
+    const li = lis[key];
+    if (li.innerHTML) {
+      let html = li.innerHTML;
+      if (html) {
         html = html.replace( regex, (s) => {
           return `<span class="pinkie">${s}</span>`;
         });
@@ -27,8 +25,8 @@ function setup() {
     }
   });
 
-  if ( window.innerWidth >= 320 ) {
-    if ( ! loaded ) {
+  if (window.innerWidth >= 320) {
+    if (!loaded) {
       document.addEventListener('DOMContentLoaded', addInterval);
     } else {
       addInterval();
@@ -39,14 +37,14 @@ function setup() {
 setup();
 
 function addInterval() {
-  if ( intervalRunning === false ) {
+  if (intervalRunning === false) {
     intervalRunning = true;
     interval = setInterval( showHide, animDuration );
   }
 }
 
 function removeInterval() {
-   if ( intervalRunning ) {
+   if (intervalRunning) {
     intervalRunning = false;
     clearInterval(interval);
   }
@@ -70,7 +68,8 @@ function showHide() {
 
 function hideAll() {
   var shown = containerDiv.querySelectorAll('li.visible'); 
-  each(shown, (li) => {
+  Object.keys(shown).forEach(key => {
+    const li = shown[key];
     if ( li.classList && isF(li.classList.remove) ) {
       li.classList.remove(visibleClassName);
     }
@@ -78,7 +77,7 @@ function hideAll() {
 }
 
 function showFirstChild() {
-  var child = containerDiv.querySelector('li:first-child');
+  const child = containerDiv.querySelector('li:first-child');
   hideAll();
   if ( child && child.classList && isF(child.classList.add) ) {
     child.classList.add(visibleClassName);
@@ -86,7 +85,7 @@ function showFirstChild() {
 }
 
 window.addEventListener('resize', () => {
-  if ( window.innerWidth < 320 ) {
+  if (window.innerWidth < 320) {
     showFirstChild();
     removeInterval();
   } else {

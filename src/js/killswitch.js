@@ -1,6 +1,6 @@
 import {frameGetRequest} from './frameGetRequest';
 
-var rootUrl = 'http://10.20.30.90:8080/slackomatic/';
+const rootUrl = 'http://10.20.30.90:8080/slackomatic/';
 
 window.addEventListener('DOMContentLoaded', () => {
   setTimeout( () => {

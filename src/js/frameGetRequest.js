@@ -2,7 +2,7 @@ import {isF} from 'magic-types';
 
 export function frameGetRequest(url, cb) {
   cb = cb || () => {};
-  var frame = document.createElement('iframe');
+  const frame = document.createElement('iframe');
   frame.classList.add('hidden');
   frame.src = url;
   frame.addEventListener('load', () => {

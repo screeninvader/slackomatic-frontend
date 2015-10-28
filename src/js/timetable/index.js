@@ -1,4 +1,3 @@
-import {each, count} from 'magic-loops';
 import {isF, isA, isD} from 'magic-types';
 import Store, {forage} from 'magic-client-store';
 import Socket from './socket';
@@ -30,8 +29,8 @@ class Timetable {
   sortByDepartTime() {
     var times = [];
 
-    each(this.departures, (line, key) => {
-      if ( line && line.countdown ) {
+    Object.keys(this.departures).forEach(key => {
+      if (line && line.countdown) {
         times[line.countdown] = [];
         times[line.countdown].push(line);
       }
@@ -44,9 +43,7 @@ class Timetable {
     this.render();
   }
 
-  getLines(cb) {
-    cb = cb || () => {};
-
+  getLines(cb = () => {}) {
     forage.getItem('shownLines', (err, data) => {
       if ( err ) { throw Error(err); }
       cb(err, data);
@@ -70,27 +67,27 @@ class Timetable {
       , shownLineNum = 0
     ;
     targetUl.innerHTML = '';
-    each(departures, (depByMinute, minute) => {
-      each(depByMinute, (dep, depKey) => {
-        var linie = this.showDeparture(dep)
-          , isShown = this.shownLines.indexOf(linie) > -1
-        ;
-        if ( isShown ) {
+    Object.keys(departures).forEach(minute => {
+      const depByMinute = departures[minute];
+      Object.keys(depByMinute).forEach(depKey => {
+        const dep = depByMinute[depKey];
+        const linie = this.showDeparture(dep);
+        const isShown = this.shownLines.indexOf(linie) > -1;
+        if (isShown) {
           shownLineNum += 1;
         }
       });
     });
-    if ( shownLineNum === 0 ) {
+    if (shownLineNum === 0) {
       this.betriebsschluss(targetUl);
     }
-    //~ this.departures = departures;
 
     this.menu.render();
   }
 
   betriebsschluss(target) {
-    if ( target && isF(target.appendChild) ) {
-      let li = document.createElement('li');
+    if (target && isF(target.appendChild)) {
+      const li = document.createElement('li');
       li.innerHTML = 'Kein Fahrbetrieb oder keine Linie ausgewählt';
       li.className = 'betriebsschluss centered';
       //return to break execution

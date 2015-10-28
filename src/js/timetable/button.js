@@ -1,28 +1,28 @@
-import {each} from 'magic-loops';
-
 class Button {
   constructor(menu, li, a) {
     this.menu = menu;
     this.li = document.createElement('li');
     this.a = document.createElement('a');
-
-    if ( li.className ) {
+    if (li.className) {
       this.li.className = li.className;
     }
-    each(li.attributes, (val, key) => {
+    Object.keys(li.attributes).forEach(key => {
+      const val = li.attributes[key];
       this.li.setAttribute(key, val);
     });
-    each(li.style, (val, key) => {
+    Object.keys(li.style).forEach(key => {
+      const val = li.style[key];
       this.li.style[key] = val;
     });
-    each(li.events, (listener, event) => {
+    Object.keys(li.events).forEach(event => {
+      const listener = li.events[event];
       this.li.addEventListener(event, listener);
     });
 
-    if ( a.className ) {
+    if (a.className) {
       this.a.className = a.className;
     }
-    if ( a.text ) {
+    if (a.text) {
       this.a.innerText = a.text;
     }
 

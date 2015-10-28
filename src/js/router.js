@@ -1,5 +1,4 @@
 import page from 'page';
-import {each} from 'magic-loops';
 import {isF} from 'magic-types';
 import config from '../../config.js';
 
@@ -13,25 +12,25 @@ class Router {
   }
 
   redirect() {
-    if ( location.pathname !== '/' ) {
+    if (location.pathname !== '/') {
       page('/');
     }
   }
 
   render(ctx, next) {
-    var pages = document.querySelectorAll('div.content.active')
-      , path  = ctx.path === '/' ? 'home' : ctx.path
-      , query = `div.content.${path}`
-      , page  = document.querySelector(query)
-    ;
+    const pages = document.querySelectorAll('div.content.active');
+    const path  = ctx.path === '/' ? 'home' : ctx.path;
+    const query = `div.content.${path}`;
+    const page  = document.querySelector(query);
 
-    each(pages, (p) => {
-      if ( p && p.classList && isF(p.classList.remove) ) {
+    Object.keys(pages).forEach(key => {
+      const p = pages[key];
+      if (p && p.classList && isF(p.classList.remove)) {
         p.classList.remove('active');
       }
     });
 
-    if ( page && page.classList && isF(page.classList.add) ) {
+    if (page && page.classList && isF(page.classList.add)) {
       page.classList.add('active');
     }
   }
