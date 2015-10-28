@@ -127,10 +127,10 @@ function upload() {
   build;
 
   echo 'remove all files from the source directory'
-  ssh root@10.20.30.90 'rm -rf /home/pi/nodejs/* -r'
+  ssh pi@10.20.30.90 'rm -rf /home/pi/nodejs/* -r'
 
   echo 'copy the prebuilt dist directory to the production root'
-  scp -r ./dist/* root@10.20.30.90:/home/pi/nodejs/
+  scp -r ./dist/* pi@10.20.30.90:/home/pi/nodejs/
 
   echo 'call killkillkill to kill the app and force respawn by inittab'
   curl http://10.20.30.90/killkillkill
